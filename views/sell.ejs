@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="ISO-8859-1">
+<title><%= title %></title>
+
+     <link rel='stylesheet' href='/stylesheets/style.css' />  
+    <script	src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+     <script src="angularjs/sell.js"></script> 
+    
+    <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+</head>
+
+<style>
+.main {
+	border:1px solid; 
+	margin-top:0px!important;
+	padding-top:10px;
+	
+}
+
+.container-fluid {
+	margin-top:0px!important;
+	padding-top:0px!important;
+	padding-left:0px!important;
+	padding-right:0px!important;
+}
+
+
+</style>
+<body ng-app="myApp" ng-controller="sell" class="container">
+
+
+<div  class="main" style="" >
+<nav class="navbar">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <img src="images/ebay.png" class="img-rounded" alt="ebay" width="80" height="50">
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="/home">Home</a></li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="/profile">{{username}}<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="/profile">Profile</a></li>
+            <li><a href="/profile">Buy/Sell details</a></li>
+          </ul>
+        </li>
+        <li><a href="/cart">cart</a></li>
+        <li><a href="/sell">Sell</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><span  class="btn" ng-click="signcheck()">{{sign}}</span></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+</div>
+
+
+
+	<div class="container">
+    <div class="panel-group">
+    <div class="panel panel-default">
+      <div class="panel-heading">Sell your stuff!</div>
+      <div class="panel-body">
+	
+	<div class="row">
+	<div class="col-lg-3"></div>
+	<div class="col-lg-12">
+		
+		Title : <input type="text" name="item" ng-model="item" placeholder="Item you want to sell"> <br><br>
+		Details : <textarea ng-model="desc" class="form-control" rows="5"></textarea> <br><br>
+		Select pricing option : 
+		
+			<input type="radio" value="fixed" ng-model="price_option">Fixed Pricing
+			<input type="radio" value="auction" ng-model="price_option">Auction		
+		 <br><br>
+		Price : <input type="number" name="price" ng-model="price" placeholder="" min="1"> <br><br>
+		Quantity : <input type="number" name="qty" ng-model="qty" value="1" min="1"> <br><br>
+		Listing duration : <input type="number" name="duration" ng-model="duration" value="1" min="1"> days <br><br>
+		Item location : <input type="text" name="location" ng-model="location" placeholder="Enter city name"> <br><br>
+		
+		<input type="submit" ng-click="sell();" value="Click to Sell">
+	</div>
+	</div>
+	</div>
+    </div>
+
+</body>
+</html>

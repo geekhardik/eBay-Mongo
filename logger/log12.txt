@@ -1,0 +1,8 @@
+{"level":"info","message":"inside /bid post","timestamp":"2016-10-20T05:54:55.817Z"}
+{"level":"info","message":"INSERT INTO bids SET `user_id` = 69, `user` = 'ved', `item` = 'idli', `price` = 2, `item_id` = 7\t","timestamp":"2016-10-20T05:54:55.822Z"}
+{"level":"info","message":"bid inserted into bid table","timestamp":"2016-10-20T05:54:55.931Z"}
+{"level":"info","message":"inside home page get method!","timestamp":"2016-10-20T05:54:57.464Z"}
+{"level":"info","message":"inside /home post method!","timestamp":"2016-10-20T05:54:57.627Z"}
+{"level":"info","message":"inside /cataLouge post","timestamp":"2016-10-20T05:54:57.634Z"}
+{"level":"info","message":"select * from sell where not seller_id ='69'","timestamp":"2016-10-20T05:54:57.636Z"}
+{"level":"info","message":"cataLouge retrival was successful","timestamp":"2016-10-20T05:54:57.639Z"}

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="ISO-8859-1">
+<title><%= title %></title>
+
+    <link rel='stylesheet' href='/stylesheets/style.css' /> 
+    <script	src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+     <script src="angularjs/signup.js"></script>
+    <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+</head>
+<body ng-app="myApp" ng-controller="myCtrl" class="container">
+	<div class="container">
+    <div class="panel-group">
+    <div class="panel panel-default">
+      <div class="panel-heading">Signup</div>
+      <div class="panel-body">
+	
+	<div class="row">
+	<div class="col-lg-5"></div>
+	<div class="col-lg-2">
+		<form method="post" action="signup_scccess">
+		<input type="text" name="firstname" ng-model="firstname" placeholder="firstname"> <br><br>
+		<input type="text" name="lastname" ng-model="lastname" placeholder="lastname"> <br><br>
+		<input type="test" name="username" ng-model="username" placeholder="username"> <br><br>
+		<input type="password" name="password" ng-model="password" placeholder="password"> <br><br>
+		<input type="submit" class="btn btn-success" ng-model="signup();">
+	</div>
+	<div class="col-lg-5"></div>
+	</div>
+	</div>
+    </div>
+
+</body>
+</html>

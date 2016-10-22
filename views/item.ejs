@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>eBay</title>
+  <meta charset="utf-8">
+  
+  	<link rel='stylesheet' href='/stylesheets/style.css' />  
+    <script	src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="angularjs/item.js"></script> 
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel='stylesheet' href='/stylesheets/item.css' /> 
+  
+</head>
+<style>
+.main {
+	border:1px solid; 
+	margin-top:0px!important;
+	padding-top:10px;
+	height : 70px;
+}
+
+.container-fluid {
+	margin-top:0px!important;
+	padding-top:0px!important;
+	padding-left:0px!important;
+	padding-right:0px!important;
+}
+
+
+</style>
+<script>
+         
+         function getdetails(sParam)
+      {
+          var sPageURL = window.location.search.substring(1);
+          var sURLVariables = sPageURL.split('&');
+          for (var i = 0; i < sURLVariables.length; i++) 
+          {
+              var sParameterName = sURLVariables[i].split('=');
+              if (sParameterName[0] == sParam) 
+              {
+                  return sParameterName[1];
+              }
+          }
+      }
+     
+         var id = getdetails('id'); 
+           
+ </script>
+
+<body ng-app="myApp" ng-controller="item" class="container-fluid" ng-init="getitem(id)">
+
+<div  class="main" style="" >
+<nav class="navbar">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <img src="images/ebay.png" class="img-rounded" alt="ebay" width="80" height="50">
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="/home">Home</a></li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="/profile">{{username}}<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="/profile">Profile</a></li>
+            <li><a href="/profile">Buy/Sell details</a></li>
+          </ul>
+        </li>
+        <li><a href="/cart">cart</a></li>
+        <li><a href="/sell">Sell</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><span  class="btn" ng-click="signcheck()">{{sign}}</span></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+</div>
+
+
+
+
+
+<div class="container-fluid">
+    <div class="content-wrapper"> 
+    <div class="item-container">  
+      <div class="container"> 
+        <div class="col-md-12">
+          <div class="product col-md-3 service-image-left">
+                    
+            <center>
+              <img id="item-display" src="/images/watch.jpg" alt="image"></img>
+            </center>
+          </div>
+          
+          <div class="container service1-items col-sm-2 col-md-2 pull-left">
+            <center>
+              <a id="item-1" class="service1-item">
+                <img src="/images/watch.jpg" alt=""></img>
+              </a>
+              <a id="item-2" class="service1-item">
+                <img src="/images/watch.jpg" alt=""></img>
+              </a>
+              <a id="item-3" class="service1-item">
+                <img src="/images/watch.jpg" alt=""></img>
+              </a>
+            </center>
+          </div>
+        </div>
+          
+        <div class="col-md-7">
+          <div class="product-title">{{x.item}}</div>
+          
+          <div class="product-rating"><i class="fa fa-star gold"></i> <i class="fa fa-star gold"></i> <i class="fa fa-star gold"></i> <i class="fa fa-star gold"></i> <i class="fa fa-star-o"></i> </div>
+          <hr>
+          <div class="product-price"><input type="number" ng-hide="qty_field" ng-model="qty" min="1" ng-maxlength="{{x.qty}}" placeholder = "Enter Item Quantity"></div>
+          
+          <div class="Product-price" ng-hide="bid_tab">
+					<input type="number" ng-model="bid_amount" placeholder="place your bid!"> 
+		</div>
+		
+		<div class="Product-price" ng-hide="bid_desc">
+					<p>Bid amount listed by seller : </p> 
+		</div>         
+          <div class="product-price" >{{x.price | currency}}</div>
+          <div class="product-stock">In Stock : {{x.qty}} units </div>
+          <hr>
+          <div class="btn-group cart" ng-hide="cart_btn">
+            <button type="button" class="btn btn-success" ng-click="cart(x);" >
+              Add to cart 
+            </button>
+          </div>
+          
+           <div class="btn-group cart" ng-hide="bid_btn">
+            <button type="button" class="btn btn-success" ng-click="bid(x);">
+              Place Bid 
+            </button>
+          </div>
+          
+          <div class="btn-group wishlist">
+            <button type="button" class="btn btn-danger">
+              Add to wishlist 
+            </button>
+          </div>
+        </div>
+      </div> 
+    </div>
+    <div class="container-fluid">   
+      <div class="col-md-12 product-info">
+          <ul id="myTab" class="nav nav-tabs nav_tabs">
+            
+            <li class="active"><a href="#service-one" data-toggle="tab">DESCRIPTION</a></li>
+            <li><a href="#service-two" data-toggle="tab">PRODUCT INFO</a></li>
+            <li><a href="#service-three" data-toggle="tab">REVIEWS</a></li>
+            
+          </ul>
+        <div id="myTabContent" class="tab-content">
+            <div class="tab-pane fade in active" id="service-one">
+             
+              <section class="container product-info">
+                {{x.desc}}
+              </section>
+                      
+            </div>
+          <div class="tab-pane fade" id="service-two">
+            
+            <section class="container">
+                
+            </section>
+            
+          </div>	
+          <div class="tab-pane fade" id="service-three">
+                        
+          </div>
+        </div>
+        <hr>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

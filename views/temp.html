@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>eBay</title>
+  <meta charset="utf-8">
+  
+  	<link rel='stylesheet' href='/stylesheets/style.css' />  
+    <script	src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="angularjs/item.js"></script> 
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel='stylesheet' href='/stylesheets/item.css' /> 
+  
+</head>
+
+<script>
+         
+         function getdetails(sParam) {
+          var sPageURL = window.location.search.substring(1);
+          var sURLVariables = sPageURL.split('&');
+          for (var i = 0; i < sURLVariables.length; i++) 
+          {
+              var sParameterName = sURLVariables[i].split('=');
+              if (sParameterName[0] == sParam) 
+              {
+                  return sParameterName[1];
+              }
+          }
+      }
+     
+         var id = getdetails('id'); 
+           
+ </script>
+
+<body ng-app="myApp" ng-controller="item" class="container-fluid" ng-init="getitem(id)">
+
+<h1>hi</h1>
+
+
+<h1>{{item}}</h1>
+<h2> Price : {{price | currency}}</h2>
+
+</body>
+</html>

@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>eBay</title>
+  <meta charset="utf-8">
+  
+    <link rel='stylesheet' href='/stylesheets/style.css' />  
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="angularjs/profile.js"></script> 
+    
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  
+   <link rel='stylesheet' href='/stylesheets/profile.css' />
+  
+</head>
+
+<script type="text/javascript">
+    
+$(document).ready(function() {
+    var panels = $('.user-infos');
+    var panelsButton = $('.dropdown-user');
+    panels.hide();
+
+    //Click dropdown
+    panelsButton.click(function() {
+        //get data-for attribute
+        var dataFor = $(this).attr('data-for');
+        var idFor = $(dataFor);
+
+        //current button
+        var currentButton = $(this);
+        idFor.slideToggle(400, function() {
+            //Completed slidetoggle
+            if(idFor.is(':visible'))
+            {
+                currentButton.html('<i class="glyphicon glyphicon-chevron-up text-muted"></i>');
+            }
+            else
+            {
+                currentButton.html('<i class="glyphicon glyphicon-chevron-down text-muted"></i>');
+            }
+        })
+    });
+
+
+    $('[data-toggle="tooltip"]').tooltip();
+
+    $('button').click(function(e) {
+        e.preventDefault();
+        alert("This is a demo.\n :-)");
+    });
+});
+
+</script>
+
+
+
+<body ng-app="myApp" ng-controller="profile" class="container" ng-init="getprofile();">
+
+<div  class="main" class="container-fluid" >
+<nav class="navbar">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <img src="images/ebay.png" class="img-rounded" alt="ebay" width="80" height="50">
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="/home">Home</a></li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="/profile">{{username}}<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="/profile">Profile</a></li>
+            <li><a href="/profile">Buy / Sell History</a></li>
+          </ul>
+        </li>
+        <li><a href="/cart">cart</a></li>
+        <li><a href="/sell">Sell</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><span  class="btn" ng-click="signcheck()">{{sign}}</span></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+</div>
+
+
+<br><br>
+<div class="container">
+ <div class="well col-xs-8 col-sm-8 col-md-8 col-lg-8 col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-lg-offset-2">
+        <div class="row user-row">
+            <div class="col-xs-3 col-sm-2 col-md-1 col-lg-1">
+                <img class="img-circle"
+                     src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=50"
+                     alt="User Pic">
+            </div>
+            <div class="col-xs-8 col-sm-9 col-md-10 col-lg-10">
+                <strong>{{username}}</strong><br>
+                <span class="text-muted">eBay Handle : {{handle}}</span>
+            </div>
+            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 dropdown-user" data-for=".cyruxx">
+                <i class="glyphicon glyphicon-chevron-down text-muted"></i>
+            </div>
+        </div>
+        <div class="row user-infos cyruxx">
+            <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xs-offset-0 col-sm-offset-0 col-md-offset-1 col-lg-offset-1">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">User information</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-3 col-lg-3 hidden-xs hidden-sm">
+                                <img class="img-circle"
+                                     src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=100"
+                                     alt="User Pic">
+                            </div>
+                            <div class="col-xs-2 col-sm-2 hidden-md hidden-lg">
+                                <img class="img-circle"
+                                     src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=50"
+                                     alt="User Pic">
+                            </div>
+                            <div class="col-xs-10 col-sm-10 hidden-md hidden-lg">
+                                <strong>{{username}}</strong><br>
+                                <dl>
+                                    <dt>eBay Handle : </dt>
+                                    <dd>{{handle}}</dd>
+                                    <dt>Registered since:</dt>
+                                    <dd>{{date | date}}</dd>
+                                    <dt>contact : </dt>
+                                    <dd>{{contact}}</dd>
+                                    <dt>Location : </dt>
+                                    <dd>{{location}}</dd>
+                                </dl>
+                            </div>
+                            <div class=" col-md-9 col-lg-9 hidden-xs hidden-sm">
+                                <strong>{{username}}</strong><br>
+                                <table class="table table-user-information">
+                                    <tbody>
+                                    <tr>
+                                        <td>eBay Handle : </td>
+                                        <td>{{handle}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Registered since:</td>
+                                        <td>{{date | date}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>contact :</td>
+                                        <td>{{contact}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Location : </td>
+                                        <td>{{location}}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+
+
+                <div class="row user-row">
+            <div class="col-xs-3 col-sm-2 col-md-1 col-lg-1">
+                <img class="img-circle"
+                     src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=50"
+                     alt="User Pic">
+            </div>
+            <div class="col-xs-8 col-sm-9 col-md-10 col-lg-10">
+                <strong>Purchase History</strong><br>
+                <span class="text-muted"></span>
+            </div>
+            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 dropdown-user" data-for=".user2">
+                <i class="glyphicon glyphicon-chevron-down text-muted"></i>
+            </div>
+        </div>
+        <div class="row user-infos user2">
+            <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xs-offset-0 col-sm-offset-0 col-md-offset-1 col-lg-offset-1">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Purchase History information</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-3 col-lg-3 hidden-xs hidden-sm">
+                                <img class="img-circle"
+                                     src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=100"
+                                     alt="User Pic">
+                            </div>
+                            <div class="col-xs-2 col-sm-2 hidden-md hidden-lg">
+                                <img class="img-circle"
+                                     src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=50"
+                                     alt="User Pic">
+                            </div>
+                           
+                            <div class=" col-md-9 col-lg-9 hidden-xs hidden-sm">
+                                <strong>Cyruxx</strong><br>
+                                <table class="table table-striped">
+                                    <thead>
+                                      <tr>
+                                        <th>Transaction ID</th>
+                                        <th>Items</th>
+                                        <th>Quantity</th>
+                                        <th>Price</th>
+                                        
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr ng-repeat = "x in bought">
+                                        <td>{{x.transection_id}}</td>
+                                        <td>{{x.item}}</td>
+                                        <td>{{x.qty}}</td>
+                                        <td>{{x.price | currency}}</td>
+                                        
+                                      </tr>    
+                                      <p>Total : {{x.total | currency}}</p>  
+                                    </tbody>
+                                  </table>
+                            </div>
+                        </div>
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+        <div class="row user-row">
+            <div class="col-xs-3 col-sm-2 col-md-1 col-lg-1">
+                <img class="img-circle"
+                     src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=50"
+                     alt="User Pic">
+            </div>
+            <div class="col-xs-8 col-sm-9 col-md-10 col-lg-10">
+                <strong>Selling History</strong><br>
+                <span class="text-muted"></span>
+            </div>
+            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 dropdown-user" data-for=".user3">
+                <i class="glyphicon glyphicon-chevron-down text-muted"></i>
+            </div>
+        </div>
+        <div class="row user-infos user3">
+            <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xs-offset-0 col-sm-offset-0 col-md-offset-1 col-lg-offset-1">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Selling information</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-3 col-lg-3 hidden-xs hidden-sm">
+                                <img class="img-circle"
+                                     src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=100"
+                                     alt="User Pic">
+                            </div>
+                            <div class="col-xs-2 col-sm-2 hidden-md hidden-lg">
+                                <img class="img-circle"
+                                     src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=50"
+                                     alt="User Pic">
+                            </div>
+                            
+                            <div class=" col-md-9 col-lg-9 hidden-xs hidden-sm">
+                                
+                               <table class="table table-striped">
+                                    <thead>
+                                      <tr>
+                                        <th>Items</th>
+                                        <th>Price</th>
+                                        <th>Quantity</th>
+                                        
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr ng-repeat = "y in sold">
+                                        <td>{{y.item}}</td>
+                                        <td>{{y.price | currency}}</td>
+                                        <td>{{y.qty}}</td>
+                                        
+                                      </tr>           
+                                    </tbody>
+                                  </table>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+
+
+        
+        
+    </div>
+</div>
+
+</body>
+</html>
+
