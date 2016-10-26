@@ -397,16 +397,82 @@ router.post('/bid', function(req, res, next) {
 router.post('/cart', function(req, res, next) {
 	
 	logger.log('info','inside /cart post');
-	
-	if(req.session.user){	
-		
-		var cart_item = req.body.obj;
+
+	var cart_item = req.body.obj;
 		var qty = req.body.qty;
 		var user = req.session.user.user_id;
 		console.log("username in cart is "+req.session.user.username);
 		console.log("item in cart is "+cart_item.item_id);
-		
-		var query = "select * from cart where cart.id = '"+cart_item.item_id+"' and cart.user_id = '"+req.session.user.user_id+"'";
+
+	var JSON_query = {
+							"cart_id" : cart_item.item_id,
+							"item" : cart_item.item,
+							"qty" : qty,
+							"user_id" : user,
+							"seller_name" : cart_item.seller,
+							"seller_id" : cart_item.seller_id
+						};
+	
+	console.log(JSON_query);
+
+	if(req.session.user){			
+				
+		mongo.connect(mongoURL, function(){
+		console.log('Connected to mongo at: ' + mongoURL);
+		var coll = mongo.collection('cart');
+
+		coll.find({"cart_id":cart_item.item_id,"user_id": req.session.user.user_id}).toArray(function(err, results){
+			
+			console.log(results.length);
+			if (results.length > 0) {
+				logger.log('info','Selected Item exists in cart already!');
+				var current_qty = results[0].qty;
+				var new_qty = Number(qty) + Number(current_qty);
+				console.log('old qty'+current_qty);
+				console.log('new qty'+new_qty);		
+
+				var NEW_JSON_query = {
+							"cart_id" : cart_item.item_id,
+							"item" : cart_item.item,
+							"qty" : new_qty,
+							"user_id" : user,
+							"seller_name" : cart_item.seller,
+							"seller_id" : cart_item.seller_id
+						};
+
+				//update qty into existing item
+
+				coll.update({"cart_id":cart_item.item_id},NEW_JSON_query, function(err, results){
+				
+					if (results) {
+						logger.log('info','selected quantity was updated into cart');
+						res.send({success : 200});
+
+					} else {
+						logger.log('info','no items found in cart table!');
+					}
+					});
+
+			} else {
+				logger.log('info','no items found in cart table!');
+				
+				coll.insert(JSON_query, function(err, results){
+				
+					if (results) {
+						logger.log('info','selected quantity was updated into cart');
+						res.send({success : 200});
+
+					} else {
+						logger.log('info','no items found in cart table!');
+					}
+					});
+			}
+		});
+	});
+
+
+
+		/*var query = "select * from cart where cart.id = '"+cart_item.item_id+"' and cart.user_id = '"+req.session.user.user_id+"'";
 		
 		mysql.fetchData(function(err, results) {
 			if (err) {
@@ -426,7 +492,7 @@ router.post('/cart', function(req, res, next) {
 						} else {
 							if (answer.length == null) {
 								logger.log('info','selected quantity was updated into cart');
-								res.send({success : 200});
+								res.send({success : 200});		
 							}else{
 								console.log("no records!");
 							} 
@@ -458,10 +524,10 @@ router.post('/cart', function(req, res, next) {
 					}, query,JSON_query); 
 				}
 			}
-		}, query); 		
+		}, query); 		*/
 		
 							
-	}else{		
+	} else{		
 		res.send({success : 401});
 	}
 });
@@ -475,7 +541,26 @@ router.get('/item', function(req, res, next) {
 router.post('/item', function(req, res, next) {
 	logger.log('info','inside /item post');
 	var id = req.body.id;
-	var query = "select * from sell where item_id=?";
+	console.log("id"+id);
+
+	mongo.connect(mongoURL, function(){
+		console.log('Connected to mongo at: ' + mongoURL);
+		var coll = mongo.collection('sell');
+
+		coll.find({"item_id":id}).toArray(function(err, data){
+			if (data) {
+				// This way subsequent requests will know the user is logged in.
+				res.send({list : data});
+
+			} else {
+				logger.log('info','no items found in items table!');
+			}
+		});
+	});
+
+
+
+	/*var query = "select * from sell where item_id=?";
 	mysql.fetchData(function(err, results) {
 		if (err) {
 			throw err;
@@ -507,7 +592,7 @@ router.post('/item', function(req, res, next) {
 				logger.log('info','no items found in items table!');
 			}
 		}
-	}, query,id);
+	}, query,id);*/
 });
 
 
@@ -521,8 +606,6 @@ router.post('/cataLouge', function(req, res, next) {
 		console.log('Connected to mongo at: ' + mongoURL);
 		var coll = mongo.collection('sell');
 		
-		console.log(req.session.user.user_id);
-
 		if(req.session.user){
 
 		coll.find({"seller_id":{$ne:req.session.user.user_id}}).toArray(function(err, data){
@@ -714,8 +797,11 @@ router.post('/sell', function(req, res, next) {
 				res.send(json_responses);
 		
 	}else{
-		var JSON_query = {
+		
+		var item_id = uuid.v1();
 
+		var JSON_query = {
+		"item_id" : item_id,
 		"item" : req.body.item,
 		"desc" : req.body.desc,
 		"seller" : req.session.user.username,
