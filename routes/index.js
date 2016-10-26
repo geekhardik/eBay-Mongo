@@ -67,7 +67,28 @@ router.post('/delet_cartitem', function(req, res, next) {
 	
 	var del_obj = req.body.obj;
 	console.log(req.body.obj);
-	var query = "delete from ebay.cart where user_id = '"+req.session.user.user_id+"' and item = '"+del_obj.item+"'";
+	
+
+	mongo.connect(mongoURL, function(){
+	console.log('Connected to mongo at: ' + mongoURL);
+	var coll = mongo.collection('cart');
+	coll.remove({"user_id":req.session.user.user_id , "item":del_obj.item}, function(err, results){
+			if (results) {
+				// This way subsequent requests will know the user is logged in.
+				logger.log('info','Item deletion was successful');											
+				res.send({success : 200});	
+
+			} else {
+				logger.log('info','Item deletion was failed');
+				res.send({success : 401});
+			}
+		});
+	});
+
+
+
+
+	/*var query = "delete from ebay.cart where user_id = '"+req.session.user.user_id+"' and item = '"+del_obj.item+"'";
 	
 	mysql.fetchData(function(err, results) {
 		if (err) {
@@ -82,7 +103,7 @@ router.post('/delet_cartitem', function(req, res, next) {
 				res.send({success : 401});	
 			}
 		}
-	},query); 
+	},query); */
 	
 	
 });
@@ -300,30 +321,36 @@ router.post('/getCart', function(req, res, next) {
 	logger.log('info','inside /getCart post method!');
 	
 	//mongodb query
-	/*mongo.connect(mongoURL, function(){
+	mongo.connect(mongoURL, function(){
 		console.log('Connected to mongo at: ' + mongoURL);
-		var coll = mongo.collection('data');
+		var coll = mongo.collection('cart');
 
-		coll.findOne({username: username, password:password}, function(err, user){
-			if (user) {
-				// This way subsequent requests will know the user is logged in.
-				console.log(user.username);
-				var name = user.username;
-				req.session.username = name;
-				console.log(req.session.username +" is the session");
-				json_responses = {"statusCode" : 200};
-				res.send(json_responses);
+		coll.find({"user_id" : req.session.user.user_id}).toArray(function(err, results){
+			if (results.length > 0 ) {
+				logger.log('info','getcart retrival is successful');
+				
+				var total_price = 0;
+				for(var i=0;i<results.length;i++){
+					total_price += (Number(results[i].price)*Number(results[i].qty));	
+					
+				}				
+				
+				JSON_obj = {
+						"cart" : results,
+						"price" : total_price
+				}
+				
+				res.send(JSON_obj);							
 
 			} else {
-				console.log("returned false");
-				json_responses = {"statusCode" : 401};
-				res.send(json_responses);
+				logger.log('info','getcart query was failed');
 			}
 		});
-	});*/
+	});
 
 
-	var query = "select ebay.sell.item,ebay.sell.item_id,ebay.cart.qty,ebay.sell.price,ebay.cart.seller_id from ebay.sell,ebay.users,ebay.cart where ebay.users.user_id=ebay.cart.user_id and ebay.sell.item_id = ebay.cart.id and ebay.cart.user_id ='"+req.session.user.user_id+"'";
+
+	/*var query = "select ebay.sell.item,ebay.sell.item_id,ebay.cart.qty,ebay.sell.price,ebay.cart.seller_id from ebay.sell,ebay.users,ebay.cart where ebay.users.user_id=ebay.cart.user_id and ebay.sell.item_id = ebay.cart.id and ebay.cart.user_id ='"+req.session.user.user_id+"'";
 	var total_price = 0;
 	mysql.fetchData(function(err, results) {
 		if (err) {
@@ -347,7 +374,7 @@ router.post('/getCart', function(req, res, next) {
 				logger.log('info','getcart query was failed');
 			}
 		}
-	},query); 
+	},query); */
 	
 });
 
@@ -404,13 +431,17 @@ router.post('/cart', function(req, res, next) {
 		console.log("username in cart is "+req.session.user.username);
 		console.log("item in cart is "+cart_item.item_id);
 
+	
+	console.log(cart_item);
+
 	var JSON_query = {
 							"cart_id" : cart_item.item_id,
 							"item" : cart_item.item,
 							"qty" : qty,
 							"user_id" : user,
 							"seller_name" : cart_item.seller,
-							"seller_id" : cart_item.seller_id
+							"seller_id" : cart_item.seller_id,
+							"price" : cart_item.price
 						};
 	
 	console.log(JSON_query);
@@ -437,7 +468,8 @@ router.post('/cart', function(req, res, next) {
 							"qty" : new_qty,
 							"user_id" : user,
 							"seller_name" : cart_item.seller,
-							"seller_id" : cart_item.seller_id
+							"seller_id" : cart_item.seller_id,
+							"price" : cart_item.price
 						};
 
 				//update qty into existing item
