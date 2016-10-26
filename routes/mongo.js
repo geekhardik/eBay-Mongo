@@ -1,6 +1,7 @@
 var MongoClient = require('mongodb').MongoClient;
 var db;
 var connected = false;
+var logger = require('../logger/logger');
 
 /**
  * Connects to the MongoDB Database with the provided URL
@@ -22,6 +23,7 @@ exports.collection = function(name){
     if (!connected) {
       throw new Error('Must connect to Mongo before calling "collection"');
     } 
+
     return db.collection(name);
   
 };

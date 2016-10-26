@@ -6,6 +6,10 @@ var check = require('./cc_check');
 var uuid = require('node-uuid');
 var crypto = require('crypto');
 
+var mongo = require("./mongo");
+var mongoURL = "mongodb://localhost:27017/ebay";
+var expressSession = require("express-session");
+
 
 const winston = require('winston');
 
@@ -294,6 +298,31 @@ router.post('/home', function(req, res, next) {
 
 router.post('/getCart', function(req, res, next) {
 	logger.log('info','inside /getCart post method!');
+	
+	//mongodb query
+	/*mongo.connect(mongoURL, function(){
+		console.log('Connected to mongo at: ' + mongoURL);
+		var coll = mongo.collection('data');
+
+		coll.findOne({username: username, password:password}, function(err, user){
+			if (user) {
+				// This way subsequent requests will know the user is logged in.
+				console.log(user.username);
+				var name = user.username;
+				req.session.username = name;
+				console.log(req.session.username +" is the session");
+				json_responses = {"statusCode" : 200};
+				res.send(json_responses);
+
+			} else {
+				console.log("returned false");
+				json_responses = {"statusCode" : 401};
+				res.send(json_responses);
+			}
+		});
+	});*/
+
+
 	var query = "select ebay.sell.item,ebay.sell.item_id,ebay.cart.qty,ebay.sell.price,ebay.cart.seller_id from ebay.sell,ebay.users,ebay.cart where ebay.users.user_id=ebay.cart.user_id and ebay.sell.item_id = ebay.cart.id and ebay.cart.user_id ='"+req.session.user.user_id+"'";
 	var total_price = 0;
 	mysql.fetchData(function(err, results) {
@@ -487,24 +516,42 @@ router.post('/cataLouge', function(req, res, next) {
 	logger.log('info','inside /cataLouge post');
 		
 	// let's get sell items info from table sell into DB
-	if(req.session.user){
-	var query = "select * from sell where not seller_id ='"+ req.session.user.user_id+"'";
-	}else{
-		var query = "select * from sell";
-	}
-	mysql.fetchData(function(err, results) {
-		if (err) {
-			throw err;
-		} else {
-			if (results.length > 0) {
+
+		mongo.connect(mongoURL, function(){
+		console.log('Connected to mongo at: ' + mongoURL);
+		var coll = mongo.collection('sell');
+		
+		console.log(req.session.user.user_id);
+
+		if(req.session.user){
+
+		coll.find({"seller_id":{$ne:req.session.user.user_id}}).toArray(function(err, data){
+		
+			logger.log('info',data);
+			if (data.length >0) {
+				// This way subsequent requests will know the user is logged in.
 				logger.log('info','cataLouge retrival was successful'); 
-				res.send({list : results});						
+				res.send({list : data});		
+
 			} else {
 				logger.log('info','cataLouge is empty');
 			}
-		}
-	}, query);
+		});
 	
+	
+	}else{
+			coll.find({}).toArray(function(err, data){
+			if (data.length >0) {
+				// This way subsequent requests will know the user is logged in.
+				logger.log('info','cataLouge retrival was successful'); 
+				res.send({list : data});		
+
+			} else {
+				logger.log('info','cataLouge is empty');
+			}
+		});
+	}	
+	});
 });
 
 
@@ -538,19 +585,23 @@ router.post('/afterSignIn', function(req, res, next) {
 	var username = req.body.inputUsername;
 	var password = req.body.inputPassword;
 
-	var getUser = "select * from users where username=?";
 
-	mysql.fetchData(function(err, results) {
-		if (err) {
-			throw err;
-		} else {
-			if (results.length > 0) {
-												
+	//Query to MongoDB
+
+	//get details of user from database! 
+
+	mongo.connect(mongoURL, function(){
+		console.log('Connected to mongo at: ' + mongoURL);
+		var coll = mongo.collection('users');
+
+		coll.findOne({username: username}, function(err, results){
+			if (results) {
+				// This way subsequent requests will know the user is logged in.
 				// get salt and hash it with password and check if two passwords
 				// are same or not!
 				
-				var get_salt = results[0].salt;
-				var get_password = results[0].password;
+				var get_salt = results.salt;
+				var get_password = results.password;
 				
 				var sha512 = function(password, salt){
 				    var hash = crypto.createHmac('sha512', salt); 
@@ -576,7 +627,7 @@ router.post('/afterSignIn', function(req, res, next) {
 					// since user is valid. let's make his session!
 					res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
 					req.session.user = {
-							"user_id" : results[0].user_id,
+							"user_id" : results.user_id,
 							"username" : username
 					};
 					logger.log('info','signin was successful');	
@@ -586,12 +637,69 @@ router.post('/afterSignIn', function(req, res, next) {
 					logger.log('info','signin was failed');
 				res.send({"statusCode" : 401});
 				}
+
+			} else {
+				console.log("returned false");
+				json_responses = {"statusCode" : 401};
+				res.send(json_responses);
+			}
+		});
+	});
+/*
+	var getUser = "select * from users where username=?";
+
+	mysql.fetchData(function(err, results) {
+		if (err) {
+			throw err;
+		} else {
+			if (results.length > 0) {
+					// get salt and hash it with password and check if two passwords
+				// are same or not!
+				
+				var get_salt = results[0].salt;
+				var get_password = results[0].password;
+				
+				var sha512 = function(password, salt){
+				    var hash = crypto.createHmac('sha512', salt); 
+				    hash.update(password);
+				    var value = hash.digest('hex');
+				    return {
+				        salt:salt,
+				        passwordHash:value
+				    };
+				};
+				
+				var hashed_pass;				
+				function saltHashPassword(userpassword) {
+				    var salt = get_salt; /** Gives us salt of length 16 
+				    var passwordData = sha512(userpassword, salt);
+				    hashed_pass = passwordData.passwordHash;				    
+				}				
+				
+				saltHashPassword(password);
+				
+				if(hashed_pass === get_password){
+					console.log("user is valid");
+					// since user is valid. let's make his session!
+					res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
+					req.session.user = {
+							"user_id" : results[0].user_id,
+							"username" : username
+					};
+					logger.log('info','signin was successful');	
+					res.send({"statusCode" : 200});	
+				
+				}else{
+					logger.log('info','signin was failed');
+				res.send({"statusCode" : 401});
+				}							
+				
 			} else {
 				logger.log('info','signin was failed');
 				res.send({"statusCode" : 401});	
 			}
 		}
-	}, getUser, [username]);
+	}, getUser, [username]);*/
 });
 
 router.get('/sell', function(req, res, next) {
@@ -605,8 +713,8 @@ router.post('/sell', function(req, res, next) {
 		json_responses = {"statusCode" : 401};
 				res.send(json_responses);
 		
-	}else{	
-	var JSON_query = {
+	}else{
+		var JSON_query = {
 
 		"item" : req.body.item,
 		"desc" : req.body.desc,
@@ -617,14 +725,51 @@ router.post('/sell', function(req, res, next) {
 		"qty" : req.body.qty,
 		"duration" : req.body.duration,
 		"location" : req.body.location,
-	};
+		};
 	
+	
+		mongo.connect(mongoURL, function(){
+			console.log('Connected to mongo at: ' + mongoURL);
+			var coll = mongo.collection('sell');
+
+			coll.insert(JSON_query, function(err, results){
+				if (err) {
+				throw err;
+			} else {
+				if (results) {
+					logger.log('info','items were inserted in sell table successfully');
+
+					//bidding code should go here!
+
+					var json_responses = {
+						"statusCode" : 200
+					};
+					res.send(json_responses);
+				} else {
+					logger.log('info','items could not be inserted in sell table');
+					 json_responses = {
+						"statusCode" : 401
+					};
+					res.send(json_responses);
+				}
+			}
+			
+			});
+		});
+	}
+	
+
+
+/*
+
+
 	var query_string = "INSERT INTO sell SET ?";
 
 	mysql.fetchData(function(err, results) {
 		if (err) {
 			throw err;
 		} else {
+
 			if (results.affectedRows === 1) {
 				logger.log('info','items were inserted in sell table successfully');
 				
@@ -755,10 +900,10 @@ router.post('/sell', function(req, res, next) {
 		}
 	}, query_string, JSON_query);
 	
-	}
+	})}; */
 
 });
-
+	
 router.post('/signup_scccess', function(req, res, next) {
 	logger.log('info','inside /signup_scccess post');
 	var first_name = req.body.firstname;
@@ -804,7 +949,42 @@ router.post('/signup_scccess', function(req, res, next) {
 	
 	saltHashPassword(get_password);
 	
-	var query_string = "INSERT INTO users SET ?";
+	
+	//connect to Mongo
+	var user_id = uuid.v1();
+
+	var JSON_query = {
+		"user_id" : user_id,
+		"firstname" : first_name,
+		"lastname" : last_name,
+		"username" : user_name,
+		"password" : hashed_pass,
+		"salt" : get_salt,
+		"contact" : contact,
+		"location" : location		
+	};
+	
+	mongo.connect(mongoURL, function(){
+		console.log('Connected to mongo at: ' + mongoURL);
+		var coll = mongo.collection('users');
+
+		coll.insert(JSON_query, function(err, user){
+			if (user) {
+				// This way subsequent requests will know the user is logged in.
+				
+				json_responses = {"statusCode" : 200};
+				res.send(json_responses);
+
+			} else {
+				console.log("returned false");
+				json_responses = {"statusCode" : 401};
+				res.send(json_responses);
+			}
+		});
+	});
+
+
+	/*var query_string = "INSERT INTO users SET ?";
 
 	var JSON_query = {
 
@@ -833,7 +1013,7 @@ router.post('/signup_scccess', function(req, res, next) {
 			}
 		}
 		res.send({"statusCode" : statusCode});
-	}, query_string, JSON_query);
+	}, query_string, JSON_query);*/
 
 });
 module.exports = router;
