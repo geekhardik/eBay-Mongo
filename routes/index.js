@@ -41,23 +41,30 @@ router.get('/profile', function(req, res, next) {
 router.post('/getbought', function(req, res, next) {
 	logger.log('info','inside getbought page post method!');
 	
-	var query = "select * from ebay.order_details where user_id = '"+req.session.user.user_id+"'";
-	
-	mysql.fetchData(function(err, results) {
-		if (err) {
-			throw err;
-		} else {
-			if (results.length > 0) {
+
+		mongo.connect(mongoURL, function(){
+		console.log('Connected to mongo at: ' + mongoURL);
+		var coll = mongo.collection('order_details');
+
+		coll.find({"user_id" : req.session.user.user_id}).toArray(function(err, results){
+			if (results.length > 0 ) {
 				logger.log('info','purchase history retrival is successful');
 				
-				console.log(results);				
-				res.send({bought : results});							
+				/*var total_price = 0;
+				for(var i=0;i<results.length;i++){
+					total_price += (Number(results[i].price)*Number(results[i].qty));						
+				}								
+				JSON_obj = {
+						"cart" : results,
+						"price" : total_price
+				}				
+				res.send(JSON_obj);	*/	
+				res.send({bought : results});
 			} else {
 				logger.log('info','bought history query was failed');
 			}
-		}
-	},query); 
-	
+		});
+	});		
 	
 });
 
@@ -84,36 +91,31 @@ router.post('/delet_cartitem', function(req, res, next) {
 			}
 		});
 	});
-
-
-
-
-	/*var query = "delete from ebay.cart where user_id = '"+req.session.user.user_id+"' and item = '"+del_obj.item+"'";
-	
-	mysql.fetchData(function(err, results) {
-		if (err) {
-			throw err;
-		} else {
-			if (results.affectedRows === 1) {
-				logger.log('info','Item deletion was successful');
-											
-				res.send({success : 200});							
-			} else {
-				logger.log('info','Item deletion was failed');
-				res.send({success : 401});	
-			}
-		}
-	},query); */
-	
 	
 });
 
 router.post('/getuserinfo', function(req, res, next) {
 	logger.log('info','inside getuserinfo page post method!');
 	if(req.session.user){
-	var query = "select * from ebay.users where user_id = '"+req.session.user.user_id+"'";
 	
-	mysql.fetchData(function(err, results) {
+		mongo.connect(mongoURL, function(){
+			console.log('Connected to mongo at: ' + mongoURL);
+			var coll = mongo.collection('users');
+
+			coll.find({"user_id" : req.session.user.user_id}).toArray(function(err, results){
+				if (results.length > 0 ) {
+					logger.log('info','user information retrival is successful');
+					res.send({info : results});	
+				} else {
+					logger.log('info','user information query was failed');
+				}
+			});
+		});	
+
+
+	// var query = "select * from ebay.users where user_id = '"+req.session.user.user_id+"'";
+	
+	/*mysql.fetchData(function(err, results) {
 		if (err) {
 			throw err;
 		} else {
@@ -125,7 +127,7 @@ router.post('/getuserinfo', function(req, res, next) {
 				logger.log('info','user information query was failed');
 			}
 		}
-	},query); 
+	},query); */
 	}else{
 		res.send({info : "redirect"});
 	}
@@ -135,23 +137,21 @@ router.post('/getuserinfo', function(req, res, next) {
 router.post('/getSold', function(req, res, next) {
 	logger.log('info','inside getSold page post method!');
 	
-	var query = "select * from ebay.sell where seller_id= '"+req.session.user.user_id+"'";
-	
-	mysql.fetchData(function(err, results) {
-		if (err) {
-			throw err;
-		} else {
-			if (results.length > 0) {
+
+		mongo.connect(mongoURL, function(){
+		console.log('Connected to mongo at: ' + mongoURL);
+		var coll = mongo.collection('sell');
+
+		coll.find({"seller_id" : req.session.user.user_id}).toArray(function(err, results){
+			if (results.length > 0 ) {
 				logger.log('info','selling history retrival is successful');
 				
-				console.log(results);				
-				res.send({sold : results});							
+				res.send({sold : results});	
 			} else {
 				logger.log('info','selling history query was failed');
 			}
-		}
-	},query); 
-	
+		});
+	});	
 });
 
 
@@ -183,109 +183,101 @@ router.post('/boughtPage', function(req, res, next) {
 	checkout_cart = req.body.cart;
 	var cart_total = req.body.total;
 	
+	
+
 	var size = 0,i=0,count=0,qty=0,cart_item= 0;
 	var new_qty = 0;
 	
 	for (var x in checkout_cart){
 		size++;
 	}
-	console.log(checkout_cart);
-	
-//	console.log(cc + " " + exp_month + " "+ exp_year + " "+ cvv);
-	
+	console.log("size"+size);
 	check.Tocheck(cc,exp_month, exp_year,cvv,function(answer,message){
-		logger.log('info','credit card validation is successful!');
+			logger.log('info','credit card validation is successful!');
 			
 		if(answer){	
 			var transection_id = uuid.v1();
 			console.log("CC check is OK");
-			
-			//insert into transection databases		
-			var query = "INSERT INTO transection SET ?";
-			
-			var JSON_query = {
-					"total" : cart_total,
-					"user_id" : req.session.user.user_id,	
-					"id" : transection_id
-			};
-			
-			mysql.fetchData(function(err, results) {
-				if (err) {
-					throw err;
-				} else {
-					if (results.affectedRows === 1) {
-						logger.log('info','inserted details into transection databases');
-					
-					} 
+
+
+			mongo.connect(mongoURL, function(){
+			console.log('Connected to mongo at: ' + mongoURL);
+			//delete the user cart!
+			var coll = mongo.collection('cart');
+			coll.remove({"user_id": req.session.user.user_id}, function(err, results){
+				if (results) {
+					// This way subsequent requests will know the user is logged in.
+					logger.log('info','deleted entries from cart database');
+
+				} else{
+					logger.log('info','entries could not be deleted from cart database after checkout!');
 				}
-			}, query,JSON_query); 
+			});
 			
+						
 			//insert detailed item lists into order_details table
 			
-			for (i=0;i<size;i++){
+			for (var i in checkout_cart){
 			
-				var query = "INSERT INTO order_details SET ?";
+				// var query = "INSERT INTO order_details SET ?";
 				
 				var JSON_query = {
 						"seller_id" : checkout_cart[i].seller_id,
 						"item" : checkout_cart[i].item,	
 						"transection_id" : transection_id,
 						"qty" : checkout_cart[i].qty,
-						"item_id" : checkout_cart[i].item_id,
+						"item_id" : checkout_cart[i].cart_id,
 						"user_id" : req.session.user.user_id,
-						"price" : checkout_cart[i].price
+						"price" : checkout_cart[i].price,
+						"time" : Date()
 				};
+
+				// console.log("round:"+i+" - "+JSON_query);
 				
-				mysql.fetchData(function(err, results) {
-					if (err) {
-						throw err;
+				var coll = mongo.collection('order_details');
+
+				coll.insert(JSON_query, function(err, results){
+					if (results) {
+					// This way subsequent requests will know the user is logged in.
+					logger.log('info','inserted items into bought_detail for round'+i+' database');
+					// console.log("i : "+i+" "+count);
+					
+					//update qty in sell table
+					new_qty = checkout_cart[count].qty;
+					item_id = checkout_cart[count++].cart_id;
+
+					
+					var coll = mongo.collection('sell');
+
+
+					//update items in sell table
+					coll.update({ "item_id": item_id},{ $inc: { "qty": -new_qty} }, function(err, results){
+						if (results) {
+							// This way subsequent requests will know the user is logged in.
+							logger.log('info','items are updated from sell database');													
+
+						} else {
+							logger.log('info','counld not update records from sell table!');
+						}
+					});
 					} else {
-						if (results.affectedRows === 1) {
-							
-							logger.log('info','inserted items into bought_detail database');
-							console.log("i : "+i+" "+count);
-							//update qty in sell table
-							qty = checkout_cart[count].qty;
-							cart_item = checkout_cart[count++].item_id;
-							var query = "UPDATE sell SET ebay.sell.qty = ebay.sell.qty -"+qty +" where item_id = '"+cart_item+"'";
-							
-							mysql.fetchData(function(err, results) {
-								if (err) {
-									throw err;
-								} else {
-									if (results.affectedRows === 1) {							
-										logger.log('info','deleted items from sell database');									
-																				
-									} else{
-										logger.log('info','counld not delete records from sell table!');
-									}
-								}
-							}, query); 
-						} 
-					}
-				}, query,JSON_query); 				
-							
-			}	
-				
-		//delete the user cart!
-			var query = "DELETE from cart where user_id = '"+req.session.user.user_id+"'";
-			
-			mysql.fetchData(function(err, results) {
-				if (err) {
-					throw err;
-				} else {
-					if (results.affectedRows === 1) {
-						logger.log('info','deleted entries from cart database');					
-					} 
-				}
-			}, query); 
+							logger.log('info','counld not insert records into order_details collection!');
+							json_responses = {"statusCode" : 401};
+							res.send(json_responses);
+						}
+			});
+		};
+
+	});			
 			res.send({"message" : 200});
 		}else{
 			logger.log('error','credit card details were incorrect!');
 			res.send({"message" : message});
 		}
-		});	
-});
+
+	});
+			
+}); 
 
 
 router.get('/home', function(req, res, next) {
@@ -346,36 +338,7 @@ router.post('/getCart', function(req, res, next) {
 				logger.log('info','getcart query was failed');
 			}
 		});
-	});
-
-
-
-	/*var query = "select ebay.sell.item,ebay.sell.item_id,ebay.cart.qty,ebay.sell.price,ebay.cart.seller_id from ebay.sell,ebay.users,ebay.cart where ebay.users.user_id=ebay.cart.user_id and ebay.sell.item_id = ebay.cart.id and ebay.cart.user_id ='"+req.session.user.user_id+"'";
-	var total_price = 0;
-	mysql.fetchData(function(err, results) {
-		if (err) {
-			throw err;
-		} else {
-			if (results.length > 0) {
-				logger.log('info','getcart retrival is successful');
-				
-				for(var i=0;i<results.length;i++){
-					total_price += (Number(results[i].price)*Number(results[i].qty));	
-					
-				}				
-				
-				JSON_obj = {
-						"cart" : results,
-						"price" : total_price
-				}
-				
-				res.send(JSON_obj);							
-			} else {
-				logger.log('info','getcart query was failed');
-			}
-		}
-	},query); */
-	
+	});	
 });
 
 
@@ -1079,7 +1042,8 @@ router.post('/signup_scccess', function(req, res, next) {
 		"password" : hashed_pass,
 		"salt" : get_salt,
 		"contact" : contact,
-		"location" : location		
+		"location" : location,
+		"time" : Date()		
 	};
 	
 	mongo.connect(mongoURL, function(){

@@ -14,7 +14,7 @@ app.controller('profile',function($scope,$http){
 //			$scope.username = data.name;	
 			
 		}else{
-			alert("somthing's wrong in callback of home.js");
+			alert("somthing's wrong in callback of profile.js");
 		}
 	});	
 	
