@@ -112,22 +112,6 @@ router.post('/getuserinfo', function(req, res, next) {
 			});
 		});	
 
-
-	// var query = "select * from ebay.users where user_id = '"+req.session.user.user_id+"'";
-	
-	/*mysql.fetchData(function(err, results) {
-		if (err) {
-			throw err;
-		} else {
-			if (results.length > 0) {
-				logger.log('info','user information retrival is successful');
-										
-				res.send({info : results});							
-			} else {
-				logger.log('info','user information query was failed');
-			}
-		}
-	},query); */
 	}else{
 		res.send({info : "redirect"});
 	}
@@ -353,7 +337,7 @@ router.post('/bid', function(req, res, next) {
 			var user = req.session.user.user_id;
 			
 			console.log("bid amount is : "+ bid);		
-			var query = "INSERT INTO bids SET ?	";
+			// var query = "INSERT INTO bids SET ?	";
 			
 			var JSON_query = {
 					"user_id" : req.session.user.user_id,
@@ -363,25 +347,31 @@ router.post('/bid', function(req, res, next) {
 					"item_id" : bid_item.item_id
 				};
 			
-			mysql.fetchData(function(err, results) {
+			mongo.connect(mongoURL, function(){
+			console.log('Connected to mongo at: ' + mongoURL);
+			var coll = mongo.collection('bids');
+
+			coll.insert(JSON_query, function(err, results){
 				if (err) {
-					throw err;
-				} else {
-					if (results.affectedRows === 1) {
-						logger.log('info', 'bid inserted into bid table');	
+				throw err;
+			} else {
+				if (results) {
+					logger.log('info', 'bid inserted into bid table');	
 						res.send({success : 200});
-					} 
+				
+				} else {
+					logger.log('info','bids couldn not be inserted in bids table');
+					res.send({success : 401});				
 				}
-			}, query,JSON_query);		
-								
-		}else{		
-			res.send({success : 401});
-		}
-	});
+			}
+			
+			});
+		});
 
-
-
-
+	}else {
+		res.send({success : 401});
+	}			
+});
 
 
 router.post('/cart', function(req, res, next) {
@@ -723,61 +713,6 @@ router.post('/afterSignIn', function(req, res, next) {
 			}
 		});
 	});
-/*
-	var getUser = "select * from users where username=?";
-
-	mysql.fetchData(function(err, results) {
-		if (err) {
-			throw err;
-		} else {
-			if (results.length > 0) {
-					// get salt and hash it with password and check if two passwords
-				// are same or not!
-				
-				var get_salt = results[0].salt;
-				var get_password = results[0].password;
-				
-				var sha512 = function(password, salt){
-				    var hash = crypto.createHmac('sha512', salt); 
-				    hash.update(password);
-				    var value = hash.digest('hex');
-				    return {
-				        salt:salt,
-				        passwordHash:value
-				    };
-				};
-				
-				var hashed_pass;				
-				function saltHashPassword(userpassword) {
-				    var salt = get_salt; /** Gives us salt of length 16 
-				    var passwordData = sha512(userpassword, salt);
-				    hashed_pass = passwordData.passwordHash;				    
-				}				
-				
-				saltHashPassword(password);
-				
-				if(hashed_pass === get_password){
-					console.log("user is valid");
-					// since user is valid. let's make his session!
-					res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
-					req.session.user = {
-							"user_id" : results[0].user_id,
-							"username" : username
-					};
-					logger.log('info','signin was successful');	
-					res.send({"statusCode" : 200});	
-				
-				}else{
-					logger.log('info','signin was failed');
-				res.send({"statusCode" : 401});
-				}							
-				
-			} else {
-				logger.log('info','signin was failed');
-				res.send({"statusCode" : 401});	
-			}
-		}
-	}, getUser, [username]);*/
 });
 
 router.get('/sell', function(req, res, next) {
@@ -1064,38 +999,5 @@ router.post('/signup_scccess', function(req, res, next) {
 			}
 		});
 	});
-
-
-	/*var query_string = "INSERT INTO users SET ?";
-
-	var JSON_query = {
-
-		"firstname" : first_name,
-		"lastname" : last_name,
-		"username" : user_name,
-		"password" : hashed_pass,
-		"salt" : get_salt,
-		"contact" : contact,
-		"location" : location		
-	};
-
-	var statusCode = 0;
-	// insert signup data into DB
-	mysql.fetchData(function(err, results) {
-		if (err) {
-			statusCode = 401;
-			throw err;			
-		} else {
-			if (results.affectedRows === 1) {
-				logger.log('info','signup was successful');
-				statusCode = 200;
-			} else {
-				logger.log('info','signup failed');
-				statusCode = 401;
-			}
-		}
-		res.send({"statusCode" : statusCode});
-	}, query_string, JSON_query);*/
-
 });
 module.exports = router;
