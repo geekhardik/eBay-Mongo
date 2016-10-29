@@ -1,73 +1,103 @@
-{"level":"info","message":"inside /signin get","timestamp":"2016-10-26T02:27:49.338Z"}
-{"level":"info","message":"inside /afterSignIn post","timestamp":"2016-10-26T02:27:54.602Z"}
-{"level":"info","message":"signin was successful","timestamp":"2016-10-26T02:27:54.617Z"}
-{"level":"info","message":"inside home page get method!","timestamp":"2016-10-26T02:27:58.023Z"}
-{"level":"info","message":"inside /home post method!","timestamp":"2016-10-26T02:27:58.207Z"}
-{"level":"info","message":"inside /cataLouge post","timestamp":"2016-10-26T02:27:58.211Z"}
-{"level":"info","message":"","timestamp":"2016-10-26T02:27:58.231Z"}
-{"level":"info","message":"cataLouge is empty","timestamp":"2016-10-26T02:27:58.232Z"}
-{"level":"info","message":"inside /logout post","timestamp":"2016-10-26T02:28:46.771Z"}
-{"level":"info","message":"inside /signin get","timestamp":"2016-10-26T02:28:47.743Z"}
-{"level":"info","message":"inside /signin get","timestamp":"2016-10-26T02:28:48.963Z"}
-{"level":"info","message":"inside /signin get","timestamp":"2016-10-26T02:28:55.195Z"}
-{"level":"info","message":"inside /afterSignIn post","timestamp":"2016-10-26T02:29:00.708Z"}
-{"level":"info","message":"inside /signin get","timestamp":"2016-10-26T02:29:02.032Z"}
-{"level":"info","message":"inside /signup get","timestamp":"2016-10-26T02:29:03.344Z"}
-{"level":"info","message":"inside /signup_scccess post","timestamp":"2016-10-26T02:29:12.247Z"}
-{"level":"info","message":"inside /signin get","timestamp":"2016-10-26T02:29:13.365Z"}
-{"level":"info","message":"inside /signup get","timestamp":"2016-10-26T02:29:17.609Z"}
-{"level":"info","message":"inside /signup_scccess post","timestamp":"2016-10-26T02:29:25.867Z"}
-{"level":"info","message":"inside /signin get","timestamp":"2016-10-26T02:29:26.526Z"}
-{"level":"info","message":"inside /afterSignIn post","timestamp":"2016-10-26T02:29:33.304Z"}
-{"level":"info","message":"signin was successful","timestamp":"2016-10-26T02:29:33.314Z"}
-{"level":"info","message":"inside home page get method!","timestamp":"2016-10-26T02:29:33.889Z"}
-{"level":"info","message":"inside /home post method!","timestamp":"2016-10-26T02:29:34.138Z"}
-{"level":"info","message":"inside /cataLouge post","timestamp":"2016-10-26T02:29:34.141Z"}
-{"level":"info","message":"","timestamp":"2016-10-26T02:29:34.158Z"}
-{"level":"info","message":"cataLouge is empty","timestamp":"2016-10-26T02:29:34.158Z"}
-{"level":"info","message":"inside /sell get","timestamp":"2016-10-26T02:29:35.624Z"}
-{"level":"info","message":"inside /home post method!","timestamp":"2016-10-26T02:29:35.781Z"}
-{"level":"info","message":"inside /sell post","timestamp":"2016-10-26T02:29:44.489Z"}
-{"level":"info","message":"items were inserted in sell table successfully","timestamp":"2016-10-26T02:29:44.497Z"}
-{"level":"info","message":"inside home page get method!","timestamp":"2016-10-26T02:29:45.443Z"}
-{"level":"info","message":"inside /home post method!","timestamp":"2016-10-26T02:29:45.596Z"}
-{"level":"info","message":"inside /cataLouge post","timestamp":"2016-10-26T02:29:45.600Z"}
-{"0":{"_id":{"_bsontype":"ObjectID","id":{"0":88,"1":16,"2":21,"3":24,"4":16,"5":252,"6":106,"7":37,"8":28,"9":120,"10":243,"11":183}},"item":"good","desc":"good","seller":"good","seller_id":"035922c0-9b24-11e6-9fcb-3d45b377187d","price_option":"fixed","price":1,"qty":1,"duration":1,"location":"1"},"level":"info","message":"","timestamp":"2016-10-26T02:29:45.613Z"}
-{"level":"info","message":"cataLouge retrival was successful","timestamp":"2016-10-26T02:29:45.623Z"}
-{"level":"info","message":"inside /sell get","timestamp":"2016-10-26T02:29:47.415Z"}
-{"level":"info","message":"inside /home post method!","timestamp":"2016-10-26T02:29:47.567Z"}
-{"level":"info","message":"inside /sell post","timestamp":"2016-10-26T02:29:58.908Z"}
-{"level":"info","message":"items were inserted in sell table successfully","timestamp":"2016-10-26T02:29:58.916Z"}
-{"level":"info","message":"inside home page get method!","timestamp":"2016-10-26T02:30:00.273Z"}
-{"level":"info","message":"inside /home post method!","timestamp":"2016-10-26T02:30:00.519Z"}
-{"level":"info","message":"inside /cataLouge post","timestamp":"2016-10-26T02:30:00.523Z"}
-{"0":{"_id":{"_bsontype":"ObjectID","id":{"0":88,"1":16,"2":21,"3":24,"4":16,"5":252,"6":106,"7":37,"8":28,"9":120,"10":243,"11":183}},"item":"good","desc":"good","seller":"good","seller_id":"035922c0-9b24-11e6-9fcb-3d45b377187d","price_option":"fixed","price":1,"qty":1,"duration":1,"location":"1"},"1":{"_id":{"_bsontype":"ObjectID","id":{"0":88,"1":16,"2":21,"3":38,"4":16,"5":252,"6":106,"7":37,"8":28,"9":120,"10":243,"11":184}},"item":"good2","desc":"jln","seller":"good","seller_id":"035922c0-9b24-11e6-9fcb-3d45b377187d","price_option":"fixed","price":1,"qty":1,"duration":1,"location":"1"},"level":"info","message":"","timestamp":"2016-10-26T02:30:00.535Z"}
-{"level":"info","message":"cataLouge retrival was successful","timestamp":"2016-10-26T02:30:00.540Z"}
-{"level":"info","message":"inside /logout post","timestamp":"2016-10-26T02:30:13.808Z"}
-{"level":"info","message":"inside /signin get","timestamp":"2016-10-26T02:30:15.010Z"}
-{"level":"info","message":"inside /afterSignIn post","timestamp":"2016-10-26T02:30:17.847Z"}
-{"level":"info","message":"signin was successful","timestamp":"2016-10-26T02:30:17.859Z"}
-{"level":"info","message":"inside home page get method!","timestamp":"2016-10-26T02:30:18.370Z"}
-{"level":"info","message":"inside /home post method!","timestamp":"2016-10-26T02:30:18.590Z"}
-{"level":"info","message":"inside /cataLouge post","timestamp":"2016-10-26T02:30:18.593Z"}
-{"0":{"_id":{"_bsontype":"ObjectID","id":{"0":88,"1":16,"2":21,"3":24,"4":16,"5":252,"6":106,"7":37,"8":28,"9":120,"10":243,"11":183}},"item":"good","desc":"good","seller":"good","seller_id":"035922c0-9b24-11e6-9fcb-3d45b377187d","price_option":"fixed","price":1,"qty":1,"duration":1,"location":"1"},"1":{"_id":{"_bsontype":"ObjectID","id":{"0":88,"1":16,"2":21,"3":38,"4":16,"5":252,"6":106,"7":37,"8":28,"9":120,"10":243,"11":184}},"item":"good2","desc":"jln","seller":"good","seller_id":"035922c0-9b24-11e6-9fcb-3d45b377187d","price_option":"fixed","price":1,"qty":1,"duration":1,"location":"1"},"level":"info","message":"","timestamp":"2016-10-26T02:30:18.612Z"}
-{"level":"info","message":"cataLouge retrival was successful","timestamp":"2016-10-26T02:30:18.614Z"}
-{"level":"info","message":"inside home page get method!","timestamp":"2016-10-26T02:38:34.538Z"}
-{"level":"info","message":"inside /home post method!","timestamp":"2016-10-26T02:38:34.844Z"}
-{"level":"info","message":"inside /cataLouge post","timestamp":"2016-10-26T02:38:34.858Z"}
-{"0":{"_id":{"_bsontype":"ObjectID","id":{"0":88,"1":16,"2":21,"3":24,"4":16,"5":252,"6":106,"7":37,"8":28,"9":120,"10":243,"11":183}},"item":"good","desc":"good","seller":"good","seller_id":"035922c0-9b24-11e6-9fcb-3d45b377187d","price_option":"fixed","price":1,"qty":1,"duration":1,"location":"1"},"1":{"_id":{"_bsontype":"ObjectID","id":{"0":88,"1":16,"2":21,"3":38,"4":16,"5":252,"6":106,"7":37,"8":28,"9":120,"10":243,"11":184}},"item":"good2","desc":"jln","seller":"good","seller_id":"035922c0-9b24-11e6-9fcb-3d45b377187d","price_option":"fixed","price":1,"qty":1,"duration":1,"location":"1"},"level":"info","message":"","timestamp":"2016-10-26T02:38:34.882Z"}
-{"level":"info","message":"cataLouge retrival was successful","timestamp":"2016-10-26T02:38:34.889Z"}
-{"level":"info","message":"inside home page get method!","timestamp":"2016-10-26T02:38:35.464Z"}
-{"level":"info","message":"inside /home post method!","timestamp":"2016-10-26T02:38:35.716Z"}
-{"level":"info","message":"inside /cataLouge post","timestamp":"2016-10-26T02:38:35.726Z"}
-{"0":{"_id":{"_bsontype":"ObjectID","id":{"0":88,"1":16,"2":21,"3":24,"4":16,"5":252,"6":106,"7":37,"8":28,"9":120,"10":243,"11":183}},"item":"good","desc":"good","seller":"good","seller_id":"035922c0-9b24-11e6-9fcb-3d45b377187d","price_option":"fixed","price":1,"qty":1,"duration":1,"location":"1"},"1":{"_id":{"_bsontype":"ObjectID","id":{"0":88,"1":16,"2":21,"3":38,"4":16,"5":252,"6":106,"7":37,"8":28,"9":120,"10":243,"11":184}},"item":"good2","desc":"jln","seller":"good","seller_id":"035922c0-9b24-11e6-9fcb-3d45b377187d","price_option":"fixed","price":1,"qty":1,"duration":1,"location":"1"},"level":"info","message":"","timestamp":"2016-10-26T02:38:35.741Z"}
-{"level":"info","message":"cataLouge retrival was successful","timestamp":"2016-10-26T02:38:35.742Z"}
-{"level":"info","message":"inside home page get method!","timestamp":"2016-10-26T02:38:36.802Z"}
-{"level":"info","message":"inside /home post method!","timestamp":"2016-10-26T02:38:37.036Z"}
-{"level":"info","message":"inside /cataLouge post","timestamp":"2016-10-26T02:38:37.039Z"}
-{"0":{"_id":{"_bsontype":"ObjectID","id":{"0":88,"1":16,"2":21,"3":24,"4":16,"5":252,"6":106,"7":37,"8":28,"9":120,"10":243,"11":183}},"item":"good","desc":"good","seller":"good","seller_id":"035922c0-9b24-11e6-9fcb-3d45b377187d","price_option":"fixed","price":1,"qty":1,"duration":1,"location":"1"},"1":{"_id":{"_bsontype":"ObjectID","id":{"0":88,"1":16,"2":21,"3":38,"4":16,"5":252,"6":106,"7":37,"8":28,"9":120,"10":243,"11":184}},"item":"good2","desc":"jln","seller":"good","seller_id":"035922c0-9b24-11e6-9fcb-3d45b377187d","price_option":"fixed","price":1,"qty":1,"duration":1,"location":"1"},"level":"info","message":"","timestamp":"2016-10-26T02:38:37.051Z"}
-{"level":"info","message":"cataLouge retrival was successful","timestamp":"2016-10-26T02:38:37.057Z"}
-{"level":"info","message":"inside home page get method!","timestamp":"2016-10-26T02:38:37.464Z"}
-{"level":"info","message":"inside /home post method!","timestamp":"2016-10-26T02:38:37.706Z"}
-{"level":"info","message":"inside /cataLouge post","timestamp":"2016-10-26T02:38:37.710Z"}
-{"0":{"_id":{"_bsontype":"ObjectID","id":{"0":88,"1":16,"2":21,"3":24,"4":16,"5":252,"6":106,"7":37,"8":28,"9":120,"10":243,"11":183}},"item":"good","desc":"good","seller":"good","seller_id":"035922c0-9b24-11e6-9fcb-3d45b377187d","price_option":"fixed","price":1,"qty":1,"duration":1,"location":"1"},"1":{"_id":{"_bsontype":"ObjectID","id":{"0":88,"1":16,"2":21,"3":38,"4":16,"5":252,"6":106,"7":37,"8":28,"9":120,"10":243,"11":184}},"item":"good2","desc":"jln","seller":"good","seller_id":"035922c0-9b24-11e6-9fcb-3d45b377187d","price_option":"fixed","price":1,"qty":1,"duration":1,"location":"1"},"level":"info","message":"","timestamp":"2016-10-26T02:38:37.721Z"}
+{"level":"info","message":"inside home page get method!","timestamp":"2016-10-28T23:41:19.104Z"}
+{"level":"info","message":"inside /home post method!","timestamp":"2016-10-28T23:41:19.586Z"}
+{"level":"info","message":"inside /cataLouge post","timestamp":"2016-10-28T23:41:19.596Z"}
+{"level":"info","message":"inside /login_time post method!","timestamp":"2016-10-28T23:41:19.603Z"}
+{"level":"info","message":"cataLouge retrival was successful","timestamp":"2016-10-28T23:41:19.639Z"}
+{"level":"info","message":"updated last_loggedin time as","timestamp":"2016-10-28T23:41:19.650Z"}
+{"level":"info","message":"inside home page get method!","timestamp":"2016-10-28T23:41:23.264Z"}
+{"level":"info","message":"inside /home post method!","timestamp":"2016-10-28T23:41:23.761Z"}
+{"level":"info","message":"inside /login_time post method!","timestamp":"2016-10-28T23:41:23.765Z"}
+{"level":"info","message":"inside /cataLouge post","timestamp":"2016-10-28T23:41:23.780Z"}
+{"level":"info","message":"updated last_loggedin time as","timestamp":"2016-10-28T23:41:23.795Z"}
+{"level":"info","message":"cataLouge retrival was successful","timestamp":"2016-10-28T23:41:23.808Z"}
+{"level":"info","message":"inside home page get method!","timestamp":"2016-10-28T23:43:10.343Z"}
+{"level":"info","message":"inside /home post method!","timestamp":"2016-10-28T23:43:10.677Z"}
+{"level":"info","message":"inside /login_time post method!","timestamp":"2016-10-28T23:43:10.681Z"}
+{"level":"info","message":"inside /cataLouge post","timestamp":"2016-10-28T23:43:10.697Z"}
+{"level":"info","message":"updated last_loggedin time as","timestamp":"2016-10-28T23:43:10.725Z"}
+{"level":"info","message":"cataLouge retrival was successful","timestamp":"2016-10-28T23:43:10.744Z"}
+{"level":"info","message":"inside home page get method!","timestamp":"2016-10-28T23:43:30.171Z"}
+{"level":"info","message":"inside home page get method!","timestamp":"2016-10-28T23:43:38.062Z"}
+{"level":"info","message":"inside /home post method!","timestamp":"2016-10-28T23:43:38.285Z"}
+{"level":"info","message":"inside /login_time post method!","timestamp":"2016-10-28T23:43:38.289Z"}
+{"level":"info","message":"inside /cataLouge post","timestamp":"2016-10-28T23:43:38.303Z"}
+{"level":"info","message":"updated last_loggedin time as","timestamp":"2016-10-28T23:43:38.353Z"}
+{"level":"info","message":"cataLouge retrival was successful","timestamp":"2016-10-28T23:43:38.356Z"}
+{"level":"info","message":"inside home page get method!","timestamp":"2016-10-28T23:43:39.593Z"}
+{"level":"info","message":"inside /home post method!","timestamp":"2016-10-28T23:43:39.760Z"}
+{"level":"info","message":"inside /cataLouge post","timestamp":"2016-10-28T23:43:39.764Z"}
+{"level":"info","message":"inside /login_time post method!","timestamp":"2016-10-28T23:43:39.771Z"}
+{"level":"info","message":"cataLouge retrival was successful","timestamp":"2016-10-28T23:43:39.818Z"}
+{"level":"info","message":"updated last_loggedin time as","timestamp":"2016-10-28T23:43:39.830Z"}
+{"level":"info","message":"inside home page get method!","timestamp":"2016-10-28T23:43:40.490Z"}
+{"level":"info","message":"inside /home post method!","timestamp":"2016-10-28T23:43:40.629Z"}
+{"level":"info","message":"inside /login_time post method!","timestamp":"2016-10-28T23:43:40.632Z"}
+{"level":"info","message":"inside /cataLouge post","timestamp":"2016-10-28T23:43:40.652Z"}
+{"level":"info","message":"updated last_loggedin time as","timestamp":"2016-10-28T23:43:40.659Z"}
+{"level":"info","message":"cataLouge retrival was successful","timestamp":"2016-10-28T23:43:40.674Z"}
+{"level":"info","message":"inside home page get method!","timestamp":"2016-10-28T23:43:51.064Z"}
+{"level":"info","message":"inside /home post method!","timestamp":"2016-10-28T23:43:51.275Z"}
+{"level":"info","message":"inside /login_time post method!","timestamp":"2016-10-28T23:43:51.281Z"}
+{"level":"info","message":"inside /cataLouge post","timestamp":"2016-10-28T23:43:51.317Z"}
+{"level":"info","message":"updated last_loggedin time as","timestamp":"2016-10-28T23:43:51.332Z"}
+{"level":"info","message":"cataLouge retrival was successful","timestamp":"2016-10-28T23:43:51.351Z"}
+{"level":"info","message":"inside home page get method!","timestamp":"2016-10-28T23:44:11.495Z"}
+{"level":"info","message":"inside /home post method!","timestamp":"2016-10-28T23:44:11.821Z"}
+{"level":"info","message":"inside /login_time post method!","timestamp":"2016-10-28T23:44:11.826Z"}
+{"level":"info","message":"inside /cataLouge post","timestamp":"2016-10-28T23:44:11.850Z"}
+{"level":"info","message":"updated last_loggedin time as","timestamp":"2016-10-28T23:44:11.872Z"}
+{"level":"info","message":"cataLouge retrival was successful","timestamp":"2016-10-28T23:44:11.886Z"}
+{"level":"info","message":"inside home page get method!","timestamp":"2016-10-28T23:45:53.594Z"}
+{"level":"info","message":"inside /home post method!","timestamp":"2016-10-28T23:45:53.907Z"}
+{"level":"info","message":"inside /login_time post method!","timestamp":"2016-10-28T23:45:53.912Z"}
+{"level":"info","message":"inside /cataLouge post","timestamp":"2016-10-28T23:45:53.929Z"}
+{"level":"info","message":"updated last_loggedin time as","timestamp":"2016-10-28T23:45:53.966Z"}
+{"level":"info","message":"cataLouge retrival was successful","timestamp":"2016-10-28T23:45:53.970Z"}
+{"level":"info","message":"inside home page get method!","timestamp":"2016-10-28T23:45:54.481Z"}
+{"level":"info","message":"inside /home post method!","timestamp":"2016-10-28T23:45:54.656Z"}
+{"level":"info","message":"inside /cataLouge post","timestamp":"2016-10-28T23:45:54.661Z"}
+{"level":"info","message":"inside /login_time post method!","timestamp":"2016-10-28T23:45:54.666Z"}
+{"level":"info","message":"cataLouge retrival was successful","timestamp":"2016-10-28T23:45:54.689Z"}
+{"level":"info","message":"updated last_loggedin time as","timestamp":"2016-10-28T23:45:54.701Z"}
+{"level":"info","message":"inside home page get method!","timestamp":"2016-10-28T23:46:31.248Z"}
+{"level":"info","message":"inside /home post method!","timestamp":"2016-10-28T23:46:31.569Z"}
+{"level":"info","message":"inside /login_time post method!","timestamp":"2016-10-28T23:46:31.583Z"}
+{"level":"info","message":"inside /cataLouge post","timestamp":"2016-10-28T23:46:31.589Z"}
+{"level":"info","message":"cataLouge retrival was successful","timestamp":"2016-10-28T23:46:31.636Z"}
+{"level":"info","message":"updated last_loggedin time as","timestamp":"2016-10-28T23:46:31.640Z"}
+{"level":"info","message":"inside home page get method!","timestamp":"2016-10-28T23:46:32.154Z"}
+{"level":"info","message":"inside /home post method!","timestamp":"2016-10-28T23:46:32.388Z"}
+{"level":"info","message":"inside /cataLouge post","timestamp":"2016-10-28T23:46:32.392Z"}
+{"level":"info","message":"inside /login_time post method!","timestamp":"2016-10-28T23:46:32.398Z"}
+{"level":"info","message":"cataLouge retrival was successful","timestamp":"2016-10-28T23:46:32.420Z"}
+{"level":"info","message":"updated last_loggedin time as","timestamp":"2016-10-28T23:46:32.440Z"}
+{"level":"info","message":"inside home page get method!","timestamp":"2016-10-28T23:46:55.972Z"}
+{"level":"info","message":"inside /home post method!","timestamp":"2016-10-28T23:46:56.286Z"}
+{"level":"info","message":"inside /login_time post method!","timestamp":"2016-10-28T23:46:56.291Z"}
+{"level":"info","message":"inside /cataLouge post","timestamp":"2016-10-28T23:46:56.306Z"}
+{"level":"info","message":"updated last_loggedin time as","timestamp":"2016-10-28T23:46:56.323Z"}
+{"level":"info","message":"cataLouge retrival was successful","timestamp":"2016-10-28T23:46:56.338Z"}
+{"level":"info","message":"inside home page get method!","timestamp":"2016-10-28T23:46:56.851Z"}
+{"level":"info","message":"inside /home post method!","timestamp":"2016-10-28T23:46:57.083Z"}
+{"level":"info","message":"inside /login_time post method!","timestamp":"2016-10-28T23:46:57.088Z"}
+{"level":"info","message":"inside /cataLouge post","timestamp":"2016-10-28T23:46:57.098Z"}
+{"level":"info","message":"updated last_loggedin time as","timestamp":"2016-10-28T23:46:57.121Z"}
+{"level":"info","message":"cataLouge retrival was successful","timestamp":"2016-10-28T23:46:57.127Z"}
+{"level":"info","message":"inside home page get method!","timestamp":"2016-10-28T23:46:57.734Z"}
+{"level":"info","message":"inside /home post method!","timestamp":"2016-10-28T23:46:57.877Z"}
+{"level":"info","message":"inside /login_time post method!","timestamp":"2016-10-28T23:46:57.880Z"}
+{"level":"info","message":"inside /cataLouge post","timestamp":"2016-10-28T23:46:57.889Z"}
+{"level":"info","message":"cataLouge retrival was successful","timestamp":"2016-10-28T23:46:57.908Z"}
+{"level":"info","message":"updated last_loggedin time as","timestamp":"2016-10-28T23:46:57.911Z"}
+{"level":"info","message":"inside home page get method!","timestamp":"2016-10-28T23:47:04.413Z"}
+{"level":"info","message":"inside /home post method!","timestamp":"2016-10-28T23:47:04.682Z"}
+{"level":"info","message":"inside /login_time post method!","timestamp":"2016-10-28T23:47:04.687Z"}
+{"level":"info","message":"inside /cataLouge post","timestamp":"2016-10-28T23:47:04.713Z"}
+{"level":"info","message":"updated last_loggedin time as","timestamp":"2016-10-28T23:47:04.724Z"}
+{"level":"info","message":"cataLouge retrival was successful","timestamp":"2016-10-28T23:47:04.745Z"}
+{"level":"info","message":"inside home page get method!","timestamp":"2016-10-28T23:47:56.910Z"}
+{"level":"info","message":"inside /home post method!","timestamp":"2016-10-28T23:47:57.245Z"}
+{"level":"info","message":"inside /login_time post method!","timestamp":"2016-10-28T23:47:57.250Z"}
+{"level":"info","message":"inside /cataLouge post","timestamp":"2016-10-28T23:47:57.271Z"}
+{"level":"info","message":"updated last_loggedin time as","timestamp":"2016-10-28T23:47:57.295Z"}
+{"level":"info","message":"cataLouge retrival was successful","timestamp":"2016-10-28T23:47:57.304Z"}

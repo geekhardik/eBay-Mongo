@@ -6,6 +6,7 @@
   
   	<link rel='stylesheet' href='/stylesheets/style.css' />  
     <script	src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.js"></script>
     <script src="angularjs/home.js"></script> 
     
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -51,6 +52,10 @@
 
   
 <div class="container">
+
+  <div class=" box alert alert-danger" ng-hide="time">
+            <strong style="color: green">Your last Logged-in time : {{login_time}}</strong>
+  </div>
   <h1>Hi {{username}}! Welcome to eBay homepage..</h1>
  </div>
 

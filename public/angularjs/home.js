@@ -1,7 +1,9 @@
 
-var app = angular.module('myApp',[]);
+var app = angular.module('myApp',['ngAnimate']);
 
-app.controller('home',function($scope,$http){
+app.controller('home',function($scope,$http,$timeout){
+
+	$scope.time = true;
 	
 	$http({			
 		method: "POST",
@@ -15,6 +17,25 @@ app.controller('home',function($scope,$http){
 			
 		}else{
 			alert("somthing's wrong in callback of home.js");
+		}
+	});	
+
+	//check last_login time and display it to user
+
+	$http({			
+		method: "POST",
+		url : '/login_time',
+					
+	}).success(function(data){
+		if (data.time !=null) {			
+			// $scope.time = data.time;
+			var time = data.time;
+			$scope.login_time = data.time;
+			$scope.time = false;
+			$timeout(function () { $scope.time = true; }, 5000);
+			// alert("you have last visited to eBay : "+time.toLocaleString());		
+		}else{
+			alert("somthing's wrong in getting last_login time from system");
 		}
 	});	
 	

@@ -1,97 +1,69 @@
-{"level":"info","message":"inside getbought page post method!","timestamp":"2016-10-20T06:28:35.127Z"}
-{"level":"info","message":"select * from ebay.order_details where user_id = '68'","timestamp":"2016-10-20T06:28:35.128Z"}
-{"level":"info","message":"selling history retrival is successful","timestamp":"2016-10-20T06:28:35.129Z"}
-{"level":"info","message":"user information retrival is successful","timestamp":"2016-10-20T06:28:35.143Z"}
-{"level":"info","message":"purchase history retrival is successful","timestamp":"2016-10-20T06:28:35.145Z"}
-{"level":"info","message":"inside home page get method!","timestamp":"2016-10-20T06:28:59.887Z"}
-{"level":"info","message":"inside /home post method!","timestamp":"2016-10-20T06:29:00.968Z"}
-{"level":"info","message":"inside /cataLouge post","timestamp":"2016-10-20T06:29:00.975Z"}
-{"level":"info","message":"select * from sell where not seller_id ='66'","timestamp":"2016-10-20T06:29:00.975Z"}
-{"level":"info","message":"cataLouge retrival was successful","timestamp":"2016-10-20T06:29:00.976Z"}
-{"level":"info","message":"inside cart page get method!","timestamp":"2016-10-20T06:29:05.680Z"}
-{"level":"info","message":"inside /home post method!","timestamp":"2016-10-20T06:29:05.779Z"}
-{"level":"info","message":"inside /getCart post method!","timestamp":"2016-10-20T06:29:05.783Z"}
-{"level":"info","message":"select ebay.sell.item,ebay.sell.item_id,ebay.cart.qty,ebay.sell.price,ebay.cart.seller_id from ebay.sell,ebay.users,ebay.cart where ebay.users.user_id=ebay.cart.user_id and ebay.sell.item_id = ebay.cart.id and ebay.cart.user_id ='66'","timestamp":"2016-10-20T06:29:05.785Z"}
-{"level":"info","message":"getcart retrival is successful","timestamp":"2016-10-20T06:29:05.787Z"}
-{"level":"info","message":"inside /delet_cartitem page post method!","timestamp":"2016-10-20T06:29:12.383Z"}
-{"level":"info","message":"delete from ebay.cart where user_id = '66' and item = 'Hridayesh'","timestamp":"2016-10-20T06:29:12.389Z"}
-{"level":"info","message":"Item deletion was successful","timestamp":"2016-10-20T06:29:12.499Z"}
-{"level":"info","message":"inside cart page get method!","timestamp":"2016-10-20T06:29:12.514Z"}
-{"level":"info","message":"inside /home post method!","timestamp":"2016-10-20T06:29:12.600Z"}
-{"level":"info","message":"inside /getCart post method!","timestamp":"2016-10-20T06:29:12.605Z"}
-{"level":"info","message":"select ebay.sell.item,ebay.sell.item_id,ebay.cart.qty,ebay.sell.price,ebay.cart.seller_id from ebay.sell,ebay.users,ebay.cart where ebay.users.user_id=ebay.cart.user_id and ebay.sell.item_id = ebay.cart.id and ebay.cart.user_id ='66'","timestamp":"2016-10-20T06:29:12.607Z"}
-{"level":"info","message":"getcart query was failed","timestamp":"2016-10-20T06:29:12.609Z"}
-{"level":"info","message":"inside /profile routing get method!","timestamp":"2016-10-20T06:29:19.961Z"}
-{"level":"info","message":"inside /home post method!","timestamp":"2016-10-20T06:29:20.079Z"}
-{"level":"info","message":"inside getSold page post method!","timestamp":"2016-10-20T06:29:20.084Z"}
-{"level":"info","message":"select * from ebay.sell where seller_id= '66'","timestamp":"2016-10-20T06:29:20.085Z"}
-{"level":"info","message":"selling history retrival is successful","timestamp":"2016-10-20T06:29:20.086Z"}
-{"level":"info","message":"inside getuserinfo page post method!","timestamp":"2016-10-20T06:29:20.092Z"}
-{"level":"info","message":"select * from ebay.users where user_id = '66'","timestamp":"2016-10-20T06:29:20.096Z"}
-{"level":"info","message":"user information retrival is successful","timestamp":"2016-10-20T06:29:20.098Z"}
-{"level":"info","message":"inside getbought page post method!","timestamp":"2016-10-20T06:29:20.101Z"}
-{"level":"info","message":"select * from ebay.order_details where user_id = '66'","timestamp":"2016-10-20T06:29:20.102Z"}
-{"level":"info","message":"bought history query was failed","timestamp":"2016-10-20T06:29:20.102Z"}
-{"level":"info","message":"inside / routing get method!","timestamp":"2016-10-22T04:46:02.082Z"}
-{"level":"info","message":"inside /afterSignIn post","timestamp":"2016-10-22T04:46:07.119Z"}
-{"level":"info","message":"select * from users where username='hardik'","timestamp":"2016-10-22T04:46:07.125Z"}
-{"level":"info","message":"signin was successful","timestamp":"2016-10-22T04:46:07.222Z"}
-{"level":"info","message":"inside home page get method!","timestamp":"2016-10-22T04:46:08.232Z"}
-{"level":"info","message":"inside /home post method!","timestamp":"2016-10-22T04:46:08.474Z"}
-{"level":"info","message":"inside /cataLouge post","timestamp":"2016-10-22T04:46:08.488Z"}
-{"level":"info","message":"select * from sell where not seller_id ='65'","timestamp":"2016-10-22T04:46:08.491Z"}
-{"level":"info","message":"cataLouge retrival was successful","timestamp":"2016-10-22T04:46:08.544Z"}
-{"level":"info","message":"inside /item get","timestamp":"2016-10-22T04:46:10.743Z"}
-{"level":"info","message":"inside /home post method!","timestamp":"2016-10-22T04:46:11.815Z"}
-{"level":"info","message":"inside /item post","timestamp":"2016-10-22T04:46:11.825Z"}
-{"level":"info","message":"select * from sell where item_id='5'","timestamp":"2016-10-22T04:46:11.829Z"}
-{"level":"info","message":"item catogory is auction!","timestamp":"2016-10-22T04:46:11.847Z"}
-{"level":"info","message":"Item listing is active","timestamp":"2016-10-22T04:46:11.856Z"}
-{"level":"info","message":"inside / routing get method!","timestamp":"2016-10-22T04:46:32.248Z"}
-{"level":"info","message":"inside home page get method!","timestamp":"2016-10-22T04:46:38.458Z"}
-{"level":"info","message":"inside /home post method!","timestamp":"2016-10-22T04:46:38.825Z"}
-{"level":"info","message":"inside /cataLouge post","timestamp":"2016-10-22T04:46:38.832Z"}
-{"level":"info","message":"select * from sell where not seller_id ='65'","timestamp":"2016-10-22T04:46:38.838Z"}
-{"level":"info","message":"cataLouge retrival was successful","timestamp":"2016-10-22T04:46:38.867Z"}
-{"level":"info","message":"inside /logout post","timestamp":"2016-10-22T04:46:43.653Z"}
-{"level":"info","message":"inside /signin get","timestamp":"2016-10-22T04:46:45.030Z"}
-{"level":"info","message":"inside home page get method!","timestamp":"2016-10-22T04:46:46.395Z"}
-{"level":"info","message":"inside /home post method!","timestamp":"2016-10-22T04:46:46.523Z"}
-{"level":"info","message":"inside /cataLouge post","timestamp":"2016-10-22T04:46:46.532Z"}
-{"level":"info","message":"select * from sell","timestamp":"2016-10-22T04:46:46.535Z"}
-{"level":"info","message":"cataLouge retrival was successful","timestamp":"2016-10-22T04:46:46.543Z"}
-{"level":"info","message":"inside / routing get method!","timestamp":"2016-10-24T19:59:29.583Z"}
-{"level":"info","message":"inside /signup get","timestamp":"2016-10-24T19:59:32.498Z"}
-{"level":"info","message":"inside /signup_scccess post","timestamp":"2016-10-24T19:59:47.197Z"}
-{"level":"info","message":"inside /signin get","timestamp":"2016-10-24T19:59:49.018Z"}
-{"level":"info","message":"inside / routing get method!","timestamp":"2016-10-25T01:44:01.245Z"}
-{"level":"info","message":"inside /signup get","timestamp":"2016-10-25T01:44:04.558Z"}
-{"level":"info","message":"inside /afterSignIn post","timestamp":"2016-10-25T01:44:11.697Z"}
-{"level":"info","message":"inside /signin get","timestamp":"2016-10-25T01:44:15.140Z"}
-{"level":"info","message":"inside /signup get","timestamp":"2016-10-25T01:45:52.593Z"}
-{"level":"info","message":"inside /signup_scccess post","timestamp":"2016-10-25T01:46:05.783Z"}
-{"level":"info","message":"inside /signin get","timestamp":"2016-10-25T01:46:07.373Z"}
-{"level":"info","message":"inside /afterSignIn post","timestamp":"2016-10-25T01:46:11.795Z"}
-{"level":"info","message":"inside /signin get","timestamp":"2016-10-25T01:47:19.622Z"}
-{"level":"info","message":"inside /afterSignIn post","timestamp":"2016-10-25T01:47:25.011Z"}
-{"level":"info","message":"inside /signin get","timestamp":"2016-10-25T01:49:03.861Z"}
-{"level":"info","message":"inside /afterSignIn post","timestamp":"2016-10-25T01:49:07.919Z"}
-{"level":"info","message":"signin was successful","timestamp":"2016-10-25T01:49:07.944Z"}
-{"level":"info","message":"inside home page get method!","timestamp":"2016-10-25T01:49:10.673Z"}
-{"level":"info","message":"inside /home post method!","timestamp":"2016-10-25T01:49:11.056Z"}
-{"level":"info","message":"inside /cataLouge post","timestamp":"2016-10-25T01:49:11.060Z"}
-{"level":"info","message":"select * from sell where not seller_id ='undefined'","timestamp":"2016-10-25T01:49:11.075Z"}
-{"level":"info","message":"cataLouge retrival was successful","timestamp":"2016-10-25T01:49:11.111Z"}
-{"level":"info","message":"inside home page get method!","timestamp":"2016-10-25T02:42:29.973Z"}
-{"level":"info","message":"inside /home post method!","timestamp":"2016-10-25T02:42:30.212Z"}
-{"level":"info","message":"inside /cataLouge post","timestamp":"2016-10-25T02:42:30.217Z"}
-{"level":"info","message":"cataLouge retrival was successful","timestamp":"2016-10-25T02:42:30.251Z"}
-{"level":"info","message":"inside home page get method!","timestamp":"2016-10-25T02:44:58.269Z"}
-{"level":"info","message":"inside /home post method!","timestamp":"2016-10-25T02:44:58.584Z"}
-{"level":"info","message":"inside /cataLouge post","timestamp":"2016-10-25T02:44:58.589Z"}
-{"level":"info","message":"cataLouge retrival was successful","timestamp":"2016-10-25T02:44:58.614Z"}
-{"level":"info","message":"inside home page get method!","timestamp":"2016-10-25T02:45:31.668Z"}
-{"level":"info","message":"inside /home post method!","timestamp":"2016-10-25T02:45:31.976Z"}
-{"level":"info","message":"inside /cataLouge post","timestamp":"2016-10-25T02:45:31.982Z"}
-{"level":"info","message":"cataLouge retrival was successful","timestamp":"2016-10-25T02:45:32.004Z"}
-{"level":"info","message":"inside home page get method!","timestamp":"2016-10-25T02:46:56.359Z"}
+{"level":"info","message":"cataLouge retrival was successful","timestamp":"2016-10-28T18:33:05.476Z"}
+{"level":"info","message":"inside cart page get method!","timestamp":"2016-10-28T18:33:06.967Z"}
+{"level":"info","message":"inside /home post method!","timestamp":"2016-10-28T18:33:07.208Z"}
+{"level":"info","message":"inside /getCart post method!","timestamp":"2016-10-28T18:33:07.221Z"}
+{"level":"info","message":"getcart retrival is successful","timestamp":"2016-10-28T18:33:07.232Z"}
+{"level":"info","message":"inside home page get method!","timestamp":"2016-10-28T18:33:10.592Z"}
+{"level":"info","message":"inside /home post method!","timestamp":"2016-10-28T18:33:10.751Z"}
+{"level":"info","message":"inside /cataLouge post","timestamp":"2016-10-28T18:33:10.755Z"}
+{"0":{"_id":{"_bsontype":"ObjectID","id":{"0":88,"1":16,"2":27,"3":242,"4":216,"5":15,"6":57,"7":23,"8":24,"9":241,"10":23,"11":77}},"item_id":"23bd6270-9b28-11e6-ae27-1f5895c19212","item":"good","desc":"asd","seller":"good","seller_id":"035922c0-9b24-11e6-9fcb-3d45b377187d","price_option":"fixed","price":1,"qty":1,"duration":1,"location":"1"},"1":{"_id":{"_bsontype":"ObjectID","id":{"0":88,"1":16,"2":27,"3":255,"4":216,"5":15,"6":57,"7":23,"8":24,"9":241,"10":23,"11":78}},"item_id":"2bdc8c10-9b28-11e6-ae27-1f5895c19212","item":"good2","desc":"lnl","seller":"good","seller_id":"035922c0-9b24-11e6-9fcb-3d45b377187d","price_option":"fixed","price":1,"qty":0,"duration":1,"location":"1"},"level":"info","message":"","timestamp":"2016-10-28T18:33:10.763Z"}
+{"level":"info","message":"cataLouge retrival was successful","timestamp":"2016-10-28T18:33:10.765Z"}
+{"level":"info","message":"inside /item get","timestamp":"2016-10-28T18:33:11.800Z"}
+{"level":"info","message":"inside /home post method!","timestamp":"2016-10-28T18:33:12.057Z"}
+{"level":"info","message":"inside /item post","timestamp":"2016-10-28T18:33:12.063Z"}
+{"level":"info","message":"inside /cart post","timestamp":"2016-10-28T18:33:14.058Z"}
+{"level":"info","message":"no items found in cart table!","timestamp":"2016-10-28T18:33:14.095Z"}
+{"level":"info","message":"selected quantity was updated into cart","timestamp":"2016-10-28T18:33:14.106Z"}
+{"level":"info","message":"inside cart page get method!","timestamp":"2016-10-28T18:33:14.121Z"}
+{"level":"info","message":"inside /home post method!","timestamp":"2016-10-28T18:33:14.319Z"}
+{"level":"info","message":"inside /getCart post method!","timestamp":"2016-10-28T18:33:14.323Z"}
+{"level":"info","message":"getcart retrival is successful","timestamp":"2016-10-28T18:33:14.331Z"}
+{"level":"info","message":"inside gotocheckout page post method!","timestamp":"2016-10-28T18:33:15.602Z"}
+{"level":"info","message":"inside gotocheckout page post method!","timestamp":"2016-10-28T18:33:15.621Z"}
+{"level":"info","message":"inside /home post method!","timestamp":"2016-10-28T18:33:15.839Z"}
+{"level":"info","message":"inside /getCart post method!","timestamp":"2016-10-28T18:33:15.842Z"}
+{"level":"info","message":"getcart retrival is successful","timestamp":"2016-10-28T18:33:15.851Z"}
+{"level":"info","message":"inside boughtPage page post method!","timestamp":"2016-10-28T18:33:35.296Z"}
+{"level":"info","message":"credit card validation is successful!","timestamp":"2016-10-28T18:33:35.301Z"}
+{"level":"info","message":"deleted entries from cart database","timestamp":"2016-10-28T18:33:35.310Z"}
+{"level":"info","message":"inserted items into bought_detail for round2 database","timestamp":"2016-10-28T18:33:35.409Z"}
+{"level":"info","message":"inserted items into bought_detail for round2 database","timestamp":"2016-10-28T18:33:35.505Z"}
+{"level":"info","message":"items are updated from sell database","timestamp":"2016-10-28T18:33:35.510Z"}
+{"level":"info","message":"items are updated from sell database","timestamp":"2016-10-28T18:33:35.510Z"}
+{"level":"info","message":"inside home page get method!","timestamp":"2016-10-28T18:33:36.943Z"}
+{"level":"info","message":"inside /home post method!","timestamp":"2016-10-28T18:33:37.261Z"}
+{"level":"info","message":"inside /cataLouge post","timestamp":"2016-10-28T18:33:37.270Z"}
+{"0":{"_id":{"_bsontype":"ObjectID","id":{"0":88,"1":16,"2":27,"3":242,"4":216,"5":15,"6":57,"7":23,"8":24,"9":241,"10":23,"11":77}},"item_id":"23bd6270-9b28-11e6-ae27-1f5895c19212","item":"good","desc":"asd","seller":"good","seller_id":"035922c0-9b24-11e6-9fcb-3d45b377187d","price_option":"fixed","price":1,"qty":1,"duration":1,"location":"1"},"1":{"_id":{"_bsontype":"ObjectID","id":{"0":88,"1":16,"2":27,"3":255,"4":216,"5":15,"6":57,"7":23,"8":24,"9":241,"10":23,"11":78}},"item_id":"2bdc8c10-9b28-11e6-ae27-1f5895c19212","item":"good2","desc":"lnl","seller":"good","seller_id":"035922c0-9b24-11e6-9fcb-3d45b377187d","price_option":"fixed","price":1,"qty":0,"duration":1,"location":"1"},"level":"info","message":"","timestamp":"2016-10-28T18:33:37.283Z"}
+{"level":"info","message":"cataLouge retrival was successful","timestamp":"2016-10-28T18:33:37.287Z"}
+{"level":"info","message":"inside cart page get method!","timestamp":"2016-10-28T18:33:40.080Z"}
+{"level":"info","message":"inside /home post method!","timestamp":"2016-10-28T18:33:40.217Z"}
+{"level":"info","message":"inside /getCart post method!","timestamp":"2016-10-28T18:33:40.221Z"}
+{"level":"info","message":"getcart query was failed","timestamp":"2016-10-28T18:33:40.231Z"}
+{"level":"info","message":"inside home page get method!","timestamp":"2016-10-28T18:33:42.899Z"}
+{"level":"info","message":"inside /home post method!","timestamp":"2016-10-28T18:33:43.124Z"}
+{"level":"info","message":"inside /cataLouge post","timestamp":"2016-10-28T18:33:43.127Z"}
+{"0":{"_id":{"_bsontype":"ObjectID","id":{"0":88,"1":16,"2":27,"3":242,"4":216,"5":15,"6":57,"7":23,"8":24,"9":241,"10":23,"11":77}},"item_id":"23bd6270-9b28-11e6-ae27-1f5895c19212","item":"good","desc":"asd","seller":"good","seller_id":"035922c0-9b24-11e6-9fcb-3d45b377187d","price_option":"fixed","price":1,"qty":1,"duration":1,"location":"1"},"1":{"_id":{"_bsontype":"ObjectID","id":{"0":88,"1":16,"2":27,"3":255,"4":216,"5":15,"6":57,"7":23,"8":24,"9":241,"10":23,"11":78}},"item_id":"2bdc8c10-9b28-11e6-ae27-1f5895c19212","item":"good2","desc":"lnl","seller":"good","seller_id":"035922c0-9b24-11e6-9fcb-3d45b377187d","price_option":"fixed","price":1,"qty":0,"duration":1,"location":"1"},"level":"info","message":"","timestamp":"2016-10-28T18:33:43.135Z"}
+{"level":"info","message":"cataLouge retrival was successful","timestamp":"2016-10-28T18:33:43.141Z"}
+{"level":"info","message":"inside /item get","timestamp":"2016-10-28T18:33:45.805Z"}
+{"level":"info","message":"inside /home post method!","timestamp":"2016-10-28T18:33:46.053Z"}
+{"level":"info","message":"inside /item post","timestamp":"2016-10-28T18:33:46.057Z"}
+{"level":"info","message":"inside home page get method!","timestamp":"2016-10-28T18:33:50.357Z"}
+{"level":"info","message":"inside /home post method!","timestamp":"2016-10-28T18:33:50.478Z"}
+{"level":"info","message":"inside /cataLouge post","timestamp":"2016-10-28T18:33:50.481Z"}
+{"0":{"_id":{"_bsontype":"ObjectID","id":{"0":88,"1":16,"2":27,"3":242,"4":216,"5":15,"6":57,"7":23,"8":24,"9":241,"10":23,"11":77}},"item_id":"23bd6270-9b28-11e6-ae27-1f5895c19212","item":"good","desc":"asd","seller":"good","seller_id":"035922c0-9b24-11e6-9fcb-3d45b377187d","price_option":"fixed","price":1,"qty":1,"duration":1,"location":"1"},"1":{"_id":{"_bsontype":"ObjectID","id":{"0":88,"1":16,"2":27,"3":255,"4":216,"5":15,"6":57,"7":23,"8":24,"9":241,"10":23,"11":78}},"item_id":"2bdc8c10-9b28-11e6-ae27-1f5895c19212","item":"good2","desc":"lnl","seller":"good","seller_id":"035922c0-9b24-11e6-9fcb-3d45b377187d","price_option":"fixed","price":1,"qty":0,"duration":1,"location":"1"},"level":"info","message":"","timestamp":"2016-10-28T18:33:50.499Z"}
+{"level":"info","message":"cataLouge retrival was successful","timestamp":"2016-10-28T18:33:50.503Z"}
+{"level":"info","message":"inside /item get","timestamp":"2016-10-28T18:33:51.423Z"}
+{"level":"info","message":"inside /home post method!","timestamp":"2016-10-28T18:33:51.641Z"}
+{"level":"info","message":"inside /item post","timestamp":"2016-10-28T18:33:51.644Z"}
+{"level":"info","message":"inside /cart post","timestamp":"2016-10-28T18:35:04.286Z"}
+{"level":"info","message":"no items found in cart table!","timestamp":"2016-10-28T18:35:04.304Z"}
+{"level":"info","message":"selected quantity was updated into cart","timestamp":"2016-10-28T18:35:04.307Z"}
+{"level":"info","message":"inside cart page get method!","timestamp":"2016-10-28T18:35:04.322Z"}
+{"level":"info","message":"inside /home post method!","timestamp":"2016-10-28T18:35:04.521Z"}
+{"level":"info","message":"inside /getCart post method!","timestamp":"2016-10-28T18:35:04.530Z"}
+{"level":"info","message":"getcart retrival is successful","timestamp":"2016-10-28T18:35:04.536Z"}
+{"level":"info","message":"inside home page get method!","timestamp":"2016-10-28T18:35:06.086Z"}
+{"level":"info","message":"inside /home post method!","timestamp":"2016-10-28T18:35:06.313Z"}
+{"level":"info","message":"inside /cataLouge post","timestamp":"2016-10-28T18:35:06.315Z"}
+{"0":{"_id":{"_bsontype":"ObjectID","id":{"0":88,"1":16,"2":27,"3":242,"4":216,"5":15,"6":57,"7":23,"8":24,"9":241,"10":23,"11":77}},"item_id":"23bd6270-9b28-11e6-ae27-1f5895c19212","item":"good","desc":"asd","seller":"good","seller_id":"035922c0-9b24-11e6-9fcb-3d45b377187d","price_option":"fixed","price":1,"qty":1,"duration":1,"location":"1"},"1":{"_id":{"_bsontype":"ObjectID","id":{"0":88,"1":16,"2":27,"3":255,"4":216,"5":15,"6":57,"7":23,"8":24,"9":241,"10":23,"11":78}},"item_id":"2bdc8c10-9b28-11e6-ae27-1f5895c19212","item":"good2","desc":"lnl","seller":"good","seller_id":"035922c0-9b24-11e6-9fcb-3d45b377187d","price_option":"fixed","price":1,"qty":0,"duration":1,"location":"1"},"level":"info","message":"","timestamp":"2016-10-28T18:35:06.325Z"}
+{"level":"info","message":"cataLouge retrival was successful","timestamp":"2016-10-28T18:35:06.331Z"}

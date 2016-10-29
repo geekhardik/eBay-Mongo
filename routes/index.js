@@ -293,6 +293,37 @@ router.post('/home', function(req, res, next) {
 });
 
 
+router.post('/login_time', function(req, res, next) {
+	logger.log('info','inside /login_time post method!');
+	if(req.session.user){
+		
+		mongo.connect(mongoURL, function(){
+			console.log('Connected to mongo at: ' + mongoURL);
+			var coll = mongo.collection('last_login');
+			coll.findOne({"user_id": req.session.user.user_id}, function(err, log_in){
+				if(log_in){
+
+					//update the time!
+
+					coll.update({"user_id" : req.session.user.user_id},{$set:{"last_visited" : Date()}}, function(err, results){
+						if (results) {
+							logger.log('info','updated last_loggedin time as');										
+						} else {
+							logger.log('info','could not update last visited time');
+						}
+					});
+
+					res.send({"time" : log_in.last_visited});
+				}
+			});	
+		});
+	}
+	else{
+		res.send({"time" : null});
+	}
+});
+
+
 router.post('/getCart', function(req, res, next) {
 	logger.log('info','inside /getCart post method!');
 	
@@ -595,7 +626,6 @@ router.post('/cataLouge', function(req, res, next) {
 
 		coll.find({"seller_id":{$ne:req.session.user.user_id}}).toArray(function(err, data){
 		
-			logger.log('info',data);
 			if (data.length >0) {
 				// This way subsequent requests will know the user is logged in.
 				logger.log('info','cataLouge retrival was successful'); 
@@ -655,7 +685,6 @@ router.post('/afterSignIn', function(req, res, next) {
 
 
 	//Query to MongoDB
-
 	//get details of user from database! 
 
 	mongo.connect(mongoURL, function(){
@@ -692,15 +721,48 @@ router.post('/afterSignIn', function(req, res, next) {
 				
 				if(hashed_pass === get_password){
 					console.log("user is valid");
+					logger.log('info','signin was successful');
 					// since user is valid. let's make his session!
 					res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
 					req.session.user = {
 							"user_id" : results.user_id,
 							"username" : username
 					};
-					logger.log('info','signin was successful');	
-					res.send({"statusCode" : 200});	
-				
+
+
+					//get the last loggedin time from db
+					var coll = mongo.collection('last_login');
+						coll.findOne({"user_id": req.session.user.user_id}, function(err, log_in){
+							if (log_in) {
+
+								logger.log('info','found last_loggedin time');
+								//update new time
+								/*coll.update({"user_id" : req.session.user.user_id},{$set:{"last_visited" : Date()}}, function(err, results){
+									if (results) {
+										logger.log('info','updated last_loggedin time as');										
+
+									} else {
+										logger.log('info','could not update last visited time');
+									}
+								});*/
+
+								
+
+							} else {
+								logger.log('info','not found last_loggedin time');
+								coll.insert({"user_id" : req.session.user.user_id,"last_visited" : Date()}, function(err, results){
+									if (results) {
+										logger.log('info','inserted last_loggedin time as');
+									} else {
+										logger.log('info','could not insert last visited time');
+									}
+								});
+
+							}
+
+						});	
+						res.send({"statusCode" : 200});					
+
 				}else{
 					logger.log('info','signin was failed');
 				res.send({"statusCode" : 401});
@@ -773,8 +835,6 @@ router.post('/sell', function(req, res, next) {
 			});
 		});
 	}
-	
-
 
 /*
 
